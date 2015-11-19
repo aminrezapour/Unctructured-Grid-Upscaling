@@ -1,0 +1,19 @@
+# --- Field Data ----------------------------------
+Field_Name: CardianTest
+
+# --- Reservoirs Data ------------------------------
+NumOfReservoirs		1
+INCLUDE ResCard.in
+
+
+END_RESERVOIRS
+
+# --- Wells Data ----------------------------------
+NumOfWells          2
+INCLUDE WellCard.in
+
+
+END_WELLS
+
+# --- Control Data --------------------------------
+INCLUDE control.in

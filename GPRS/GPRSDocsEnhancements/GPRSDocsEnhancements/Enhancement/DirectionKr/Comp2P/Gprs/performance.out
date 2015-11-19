@@ -1,0 +1,60 @@
+
+ Simulation Finished Successfully 
+
+
+ -------------------------- Performance Report -------------------------- 
+
+
+ ------------ Mass Balance Error Report ------------- 
+
+ OCIP     :	910771	1.46024e+006	4.96709e+007	6.54099e+006	4.44848e+006	7.27864e+006	3.57158e+006	1.14035e+006	248392	
+
+ Residual :	43400.8	40201.3	5.72675e+007	7.01542e+006	413609	1.37691e+006	874183	668345	178388	
+ Facilty  :	867326	1.42001e+006	9.67861e+007	1.11234e+007	4.03453e+006	5.90102e+006	2.69702e+006	471854	69970.4	
+ Facilty  :	0	0	-1.04385e+008	-1.15983e+007	0	0	0	0	0	
+
+ MB_Error :	43.3878	28.0465	1814.12	408.707	331.27	708.922	374.192	145.922	33.5622	
+ Rel_Error:	0%	0%	0%	0%	0%	0%	0%	0%	0%	
+
+
+ Variable Type : -----------------  Natural Variables
+ Number of Implicit levels: ------        1
+                    ImpVar --- TransImpLvl --- CFL_Limit --- Percent
+       Scheme 0 :     9             4             1           100%
+
+ Linear solver choice : ----------        4
+ Preconditioner choice : ---------        4
+ Linear solver Tolerance : -------   0.0001
+
+ Total running time: -------------       67 sec  ( 100 % )
+   -Initialization time: ---------        5 sec  (   7 % )
+   -Property Calc  time: ---------    7.603 sec  (  11 % )
+   -Linearization  time: ---------   20.068 sec  (  30 % )
+   -Newton Update  time: ---------    0.155 sec  (   0 % )
+   -Solver running time: ---------   17.581 sec  (  26 % )
+      --(B)ILU Pre fac time: -----    8.694 sec  (  13 % )
+      --(B)ILU Pre slv time: -----    0.661 sec  (   1 % )
+      --Pres dcpl time: ----------    2.293 sec  (   3 % )
+      --Pres slv time: -----------    2.019 sec  (   3 % )
+   -Timestep Calc  time: ---------        0 sec  (   0 % )
+   -CFL No.  Calc  time: ---------        0 sec  (   0 % )
+
+
+ Compositional simulation only:
+ Initialization time for reservoir: ---------    0.453 sec
+ Phase equilibrium running time: ------------    1.381 sec
+
+
+ No. of timesteps: ---------------      117
+
+ No. of Newton Iters : -----------      360
+ No. of Waste Newton Iters : -----      192
+
+ No. of Solver Iters : -----------     1028
+ No. of Waste Solver Iters : -----      514
+
+ No. of Pres slvr iters : --------     1028
+ No. of Waste Pres slvr iters: ---      514
+
+ Total elapsed = 67, steps = 117, Newton = 360, linear = 1028
+

@@ -1,0 +1,152 @@
+RESERVOIR_NAME   RES1
+
+GRID_DATA  #########################################
+GRIDSIZE  10 10 3
+DX
+  100
+DY
+  100
+DZ
+  20
+PERMX
+  100
+PERMY
+  100
+PERMZ
+  50
+PORO
+	0.3
+TOPS     
+	8325
+TEMP
+	620
+END
+
+FLUID_DATA  ######################################### 
+FLUID_TYPE COMPOSITIONAL
+NPHASES      2
+NCOMPONENTS 4
+
+# Phase data -------------
+#PHASE_NAMES 
+GAS  OIL 
+
+
+# --- component data -------------
+#COMP_NAMES
+C1 CO2 C4  C10
+
+# --- Z(initial total mole fraction) for each component ---
+length_of_table 2
+1   	0.2 0.01 0.29 0.5
+10000	0.2 0.01 0.29 0.5
+
+# --- Molecular Weight for each component ---
+16.043  44.01 58.124  134
+
+# --- Pc(Psia) for each component ---
+667.781  1071.331  543.454 350.938
+
+# --- Tc(R) for each component ---
+343.08  548.46  755.1  1126.8
+
+#--- Vc (ft3/lb-mole) for each component -----
+1.569809 1.50573  4.13276  8.5538
+
+# --- W for each component ---
+0.013  0.225  0.1956  0.385
+
+# --- Volume Shift Parameter (Dimensionless S) ----
+0 0 0 0
+#--- K[ij] for each pair component ----------
+# Peng-Rubinson
+ 0        0.01    0.0     0.04162
+ 0.01     0       0.1	  0.1
+ 0.0      0.1	  0       0.0
+ 0.04162  0.1	  0.0	  0.0
+
+
+#Flash method: SSI or NEWTON
+#SSI
+#      stabSwitchEps	flashSwitchEps
+NEWTON  1e-2 		 1e-2
+
+#CSAT
+#1 10 400 1800 1 620 620 1e-2 1e-2 10 100
+
+END
+
+PHASE_COMP_RELATION_DATA ##########################
+# --- component phase relation (nPhases by nComps) ---
+#comp:	C1      C2	C3	C4
+	1	1	1	1
+	1	1	1	1
+
+END
+
+ROCKFLUID_DATA #####################################
+
+
+#GASOILPERM 1
+GO
+NUM_OF_TABLE_ENTRIES 23
+#TABLE      SG       	KRG           KROg    PCOG
+
+         0         0    1.0000         0
+    0.0400    0.0021    0.9112         0
+    0.0800    0.0083    0.8264         0
+    0.1200    0.0186    0.7459         0
+    0.1600    0.0331    0.6694         0
+    0.2000    0.0517    0.5971         0
+    0.2400    0.0744    0.5289         0
+    0.2800    0.1012    0.4649         0
+    0.3200    0.1322    0.4050         0
+    0.3600    0.1674    0.3492         0
+    0.4000    0.2066    0.2975         0
+    0.4400    0.2500    0.2500         0
+    0.4800    0.2975    0.2066         0
+    0.5200    0.3492    0.1674         0
+    0.5600    0.4050    0.1322         0
+    0.6000    0.4649    0.1012         0
+    0.6400    0.5289    0.0744         0
+    0.6800    0.5971    0.0517         0
+    0.7200    0.6694    0.0331         0
+    0.7600    0.7459    0.0186         0
+    0.8000    0.8264    0.0083         0
+    0.8400    0.9112    0.0021         0
+    0.8800    1.0000         0         0
+
+
+#STONEI
+
+#HYST CARLSON 23
+
+
+END
+
+ROCK_DATA ##########################################
+#		COMP.    REF. PRES
+		5.E-6     1000
+
+END
+
+EQUILIBRIUM_DATA ##########################################
+#   	Swi		Sor		Sgr
+	0.0 		0.0		0.0
+
+#	pres	@depth	WOC		GOC
+	1100	8400	9000	        7000
+END
+
+END_RESERVOIR
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+Results for well: RES1_PROD.out in the reservoir: RES1_PROD.out
+
+time		BHP		q(Gas)	q(Oil)
+days		psi		Mscf/d		stb/d
+0         	450       	0         	0         	
+1         	378.319   	727.128   	499.999   	
+3         	367.595   	759.61    	500.001   	
+5         	356.583   	800.086   	499.999   	

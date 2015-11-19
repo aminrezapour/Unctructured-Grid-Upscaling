@@ -1,0 +1,17 @@
+# --- Field Data ----------------------------------
+Field_Name: unknown
+
+# --- Reservoirs Data ------------------------------
+NumOfReservoirs		1
+INCLUDE res_BO_unstruc.in
+
+END_RESERVOIRS
+
+# --- Wells Data ----------------------------------
+NumOfWells          2
+INCLUDE wells_my.in
+
+END_WELLS
+
+# --- Control Data --------------------------------
+INCLUDE control.in

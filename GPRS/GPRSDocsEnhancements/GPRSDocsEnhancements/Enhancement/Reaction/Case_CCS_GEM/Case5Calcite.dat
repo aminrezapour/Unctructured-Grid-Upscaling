@@ -1,0 +1,394 @@
+**--------------------------------------------------------------------**
+** GMGHG018.DAT:  CO2 Sequestration - Water Vaporization              **
+**--------------------------------------------------------------------**
+**--------------------------------------------------------------------**
+**                                                                    **
+** FILE:  GMGHG018.DAT                                                **
+**                                                                    **
+** MODEL: CART 100x1x10 GRID            CO2 INJECTION INTO AN         **
+**        3 COMPONENTS (INCL. WATER)    AQUIFER WITH GEOCHEMISTRY     **
+**        WATER-GAS MODEL                                             **
+**        SI UNITS                                                    **
+**                                                                    **
+**--------------------------------------------------------------------**
+**                                                                    **
+** This template data set is constructed to model gas sequestration   **
+** into an  aquifer. Field units are used. Chemical equilibrium       **
+** constants are independent of temperature. Trace gas is used. CO2   **
+** inventory information is output for plotting.                      **
+** H2O is included as a component in the EOS component list and       **
+** *OGW_FLASH *ON is used to allow vaporization of water into the gas **
+** phase.                                                             **
+**                                                                    **
+**--------------------------------------------------------------------**
+** CONTACT CMG at (403)531-1300 or support@cmgl.ca                    **
+**--------------------------------------------------------------------**
+
+*RESULTS *SIMULATOR *GEM
+*FILENAMES *OUTPUT *SRFOUT *RESTARTOUT *INDEXOUT *MAINRESULTSOUT
+*TITLE1 'CO2 injection into aquifer'
+*TITLE2 'CO2 soluble in water'
+*TITLE3 ' '
+*INUNIT *SI
+*RESULTFILE *SR2
+*WRST   0
+*WPRN *WELL  *TIME
+*WPRN *GRID  *TIME
+*WPRN *ITER  *BRIEF
+
+OUTPRN GRID PRES SG MOLALITY 'CO2'
+		MOLALITY 'H+' 
+		MOLALITY 'Ca++' 
+		MOLALITY 'HCO3-' 
+		MOLALITY 'CO3--'
+		MOLALITY 'OH-' 
+		MOLALITY 'SiO2(aq)'
+	        *MINERAL 'Calcite' *MINERAL 'Dolomite' *MINERAL 'Kaolinit'
+      	  *MINERAL 'Chalcedo' *MINERAL 'Illite' *MINERAL 'Siderite'
+              *MINERAL 'Annite' *MINERAL 'Anorthit'
+OUTSRF GRID PRES SG MOLALITY 'CO2' W 'CO2' Z 'CO2'
+		MOLALITY 'H+' 
+		MOLALITY 'Ca++' 
+		MOLALITY 'HCO3-' 
+		MOLALITY 'CO3--'
+		MOLALITY 'OH-' 
+		MOLALITY 'SiO2(aq)'
+	        *MINERAL 'Calcite' *MINERAL 'Dolomite' *MINERAL 'Kaolinit'
+      	  *MINERAL 'Chalcedo' *MINERAL 'Illite' *MINERAL 'Siderite'
+              *MINERAL 'Annite' *MINERAL 'Anorthit'
+
+
+*OUTPRN *RES *ALL
+*WSRF *WELL  1
+*WSRF *GRID  *TIME
+
+*OUTSRF *WELL *GHGGAS *GHGLIQ *GHGSCRIT *GHGSOL *GHGAQU *GHGMNR
+
+
+*OUTSRF *RES *ALL
+*DIARY *CHANGES
+*DIM MDIMPL  100
+
+**-------------------------------------RESERVOIR & GRID DATA------------
+GRID VARI 	102 1 1
+KDIR DOWN
+*DI *CON  	3.048
+*DJ *CON 	3.048
+*DK *CON	3.048
+*DTOP		102*2438
+*POR CON         0.1
+PERMI CON         100
+PERMJ CON		100
+PERMK CON		50
+PRPOR 101.3
+CPOR  4.35e-7
+
+**-------------------------------------FLUID PROPERTY DATA--------------
+*MODEL   *PR
+*NC    3    3
+*H2O_INCLUDED
+*TRES        50.000
+*PVC3  1.2000000E+00
+*COMPNAME
+           'CO2'          'C1'           'H2O'
+*SG         8.1800000E-01  3.0000000E-01  1.0000000E+00
+*TB        -7.8450000E+01 -1.6145000E+02  1.0000000E+02
+*PCRIT      7.2800000E+01  4.5400000E+01  2.1760000E+02
+*VCRIT      9.4000000E-02  9.9000000E-02  5.6000000E-02
+*TCRIT      3.0420000E+02  1.9060000E+02  6.4730000E+02
+*AC         2.2500000E-01  8.0000000E-03  3.4400000E-01
+*MW         4.4010000E+01  1.6043000E+01  1.8015000E+01
+*HCFLAG     0              0              0
+*BIN
+            1.0300000E-01
+            2.0000000E-01  4.9070000E-01
+*VSHIFT     0.0000000E+00  0.0000000E+00  0.0000000E+00
+*VISCOR *HZYT
+*MIXVC      1.0000000E+00
+*VISVC      9.4000000E-02  9.9000000E-02  5.6000000E-02
+*VISCOEFF   1.0230000E-01  2.3364000E-02  5.8533000E-02 -4.0758000E-02
+            9.3324000E-03
+*OMEGA      4.5723553E-01  4.5723553E-01  4.5723553E-01
+*OMEGB      7.7796074E-02  7.7796074E-02  7.7796074E-02
+*PCHOR      7.8000000E+01  7.7000000E+01  5.2000000E+01
+*HENRYC     3.0561108E+05            0.0  1.3302276E+01
+*REFPH      1.2000000E+04  1.2000000E+04  1.2000000E+04
+*VINFINITY  3.5328560E-02  3.5481874E-02  1.8136820E-02
+*ENTHCOEF
+            4.7780500E+00  1.1443300E-01  1.0113200E-04 -2.6494000E-08
+            3.4706000E-12 -1.3140000E-16
+           -5.5811400E+00  5.6483400E-01 -2.8297300E-04  4.1739900E-07
+           -1.5255760E-10  1.9588570E-14
+           -2.4634200E+00  4.5739200E-01 -5.2512000E-05  6.4549000E-08
+           -2.0275900E-11  2.3631000E-15
+
+*HENRY-CORR-CO2
+
+** ***********************************************
+** aqueous/solid phase components
+** ***********************************************
+
+*YAQU-RATE-CUTOFF
+   1.0000E-4   1.0000E+02 1.0000E+02
+
+*DER-CHEM-EQUIL  *NUMERICAL
+*DER-REACT-RATE  *NUMERICAL
+
+*PERM-VS-POR   0
+
+*ACTIVITY-MODEL  *B-DOT
+*SALINITY-CALC  *OFF
+*SALINITY   0.10000
+*AQFILL  *OFF
+
+*NC-AQUEOUS   11
+
+ *COMPNAME-AQUEOUS     
+'H+'   'Al+++'   'Ca++'   'SiO2(aq)'   'Fe++' 	'K+'   'Mg++'   'HCO3-'   'CO3--'   'OH-'  'Al(OH)2+'
+ *MW-AQUEOUS     
+1.0079   26.9815   40.0800   60.0843   55.8470  39.0983   24.3050   61.0171   60.0092   17.0073  60.9961
+ *ION-SIZE-AQUEOUS     
+9.0   9.0   6.0   -0.5   6.0  3.0   8.0   4.5   4.5   3.5  4.0  
+*CHARGE-AQUEOUS     
+1.0   3.0   2.0   0.0   2.0  1.0   2.0   -1.0   -2.0   -1.0  1.0
+
+ *NC-MINERAL     8
+*COMPNAME-MINERAL     
+'Calcite'   'Kaolinit'   'Anorthit'   'Chalcedo'   'Annite' 'Dolomite'   'Illite'   'Siderite'  
+*MW-MINERAL     
+100.0892   258.1603   278.2093   60.0843   511.8859  184.4034   383.9006   115.8562
+ *MASSDENSITY-MINERAL     
+2709.95   2594.05   2760.29   2648.29   3317.47  2864.96   2763.07   4046.67
+
+*N-CHEM-EQUIL    4
+*N-RATE-REACT    8
+
+
+**REACTION NO.   1: CO2(aq) + H2O = (H+) + (HCO3-)
+*STOICHIOMETRY
+-1 0 -1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0
+*LOG-CHEM-EQUIL-CONST -6.3583
+
+**REACTION NO.   2: (CO3--) + (H+) = (HCO3-)
+*STOICHIOMETRY
+  0 0 0 -1 0 0 0 0 0 0 1 -1 0 0 0 0 0 0 0 0 0 0
+*LOG-CHEM-EQUIL-CONST 10.3131
+
+**REACTION NO.   3: (OH-) + (H+) = H2O
+*STOICHIOMETRY
+  0 0 1 -1 0 0 0 0 0 0 0 0 -1 0 0 0 0 0 0 0 0 0
+*LOG-CHEM-EQUIL-CONST 13.7658
+
+**REACTION NO.   4: (AlOH++) + (H+) = (Al+++) + H2O
+*STOICHIOMETRY
+  0 0 2 -2 1 0 0 0 0 0 0 0 0 -1 0 0 0 0 0 0 0 0
+*LOG-CHEM-EQUIL-CONST 9.7104
+
+**REACTION NO.   5: Calcite + (H+) = (Ca++) + (HCO3-)
+*STOICHIOMETRY
+  0 0 0 -1 0 1 0 0 0 0 1 0 0 0 -1 0 0 0 0 0 0 0
+*LOG-CHEM-EQUIL-CONST 1.5988
+
+*REACTIVE-SURFACE-AREA       88.00
+*ACTIVATION-ENERGY    41870.00
+*LOG-TST-RATE-CONSTANT    -8.79500
+*REF-TEMP-RATE-CONST       25.00
+
+**REACTION NO.   8: Kaolinite + 6 (H+) = 5 H2O + 2 (Al+++) + 2 SiO2(aq)
+*STOICHIOMETRY
+  0 0 5 -6 2 0 2 0 0 0 0 0 0 0 0 -1 0 0 0 0 0 0
+*LOG-CHEM-EQUIL-CONST 6.82
+
+*REACTIVE-SURFACE-AREA    17600.00
+*ACTIVATION-ENERGY    62760.00
+*LOG-TST-RATE-CONSTANT   -13.00000
+*REF-TEMP-RATE-CONST       25.00
+
+**REACTION NO.  12: Anorthite + 8 (H+) = 4 H2O + (Ca++) + 2 (Al+++) + 2 SiO2(aq)
+*STOICHIOMETRY
+  0 0 4 -8 2 1 2 0 0 0 0 0 0 0 0 0 -1 0 0 0 0 0
+*LOG-CHEM-EQUIL-CONST 25.8171
+*REACTIVE-SURFACE-AREA       88.00
+*ACTIVATION-ENERGY    67830.00
+*LOG-TST-RATE-CONSTANT   -12.00000
+*REF-TEMP-RATE-CONST       25.00
+
+**REACTION NO.  10: Chalcedony = SiO2(aq)
+*STOICHIOMETRY
+  0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 -1 0 0 0 0
+*LOG-CHEM-EQUIL-CONST -3.6211
+*REACTIVE-SURFACE-AREA     7128.00
+*ACTIVATION-ENERGY    87500.00
+*LOG-TST-RATE-CONSTANT   -13.90000
+*REF-TEMP-RATE-CONST       25.00
+
+
+**REACTION NO.  11: Annite + 10 (H+) = 3 (Fe++) + 3 SiO2(aq) + (Al+++) + 6 H2O + (K+)
+*STOICHIOMETRY
+  0 0 6 -10 1 0 3 3 1 0 0 0 0 0 0 0 0 0 -1 0 0 0
+*LOG-CHEM-EQUIL-CONST 28.6124
+*REACTIVE-SURFACE-AREA     4400.00
+*ACTIVATION-ENERGY    58620.00
+*LOG-TST-RATE-CONSTANT   -14.00000
+*REF-TEMP-RATE-CONST       25.00
+
+**REACTION NO.   6: Dolomite-dis + 2 (H+) = (Ca++) + (Mg++) + 2 (HCO3-)
+*STOICHIOMETRY
+  0 0 0 -2 0 1 0 0 0 1 2 0 0 0 0 0 0 0 0 -1 0 0
+*LOG-CHEM-EQUIL-CONST 2.2506
+*REACTIVE-SURFACE-AREA       88.00
+*ACTIVATION-ENERGY    41870.00
+*LOG-TST-RATE-CONSTANT    -9.22185
+*REF-TEMP-RATE-CONST       25.00
+
+**REACTION NO.   9: Illite + 8 (H+) = 5 H2O + 0.6 (K+) + 0.25 (Mg++) + 2.3 (Al+++) + 3.5 SiO2(aq)
+*STOICHIOMETRY
+  0 0 5 -8 2.3 0 3.5 0 0.6 0.25 0 0 0 0 0 0 0 0 0 0 -1 0
+*LOG-CHEM-EQUIL-CONST 9.0798
+*REACTIVE-SURFACE-AREA    26400.00
+*ACTIVATION-ENERGY    58620.00
+*LOG-TST-RATE-CONSTANT   -14.00000
+*REF-TEMP-RATE-CONST       25.00
+
+**REACTION NO.   7: Siderite + (H+) = (HCO3-) + (Fe++)
+*STOICHIOMETRY
+  0 0 0 -1 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 -1
+*LOG-CHEM-EQUIL-CONST -0.3667
+*REACTIVE-SURFACE-AREA       88.00
+*ACTIVATION-ENERGY    41870.00
+*LOG-TST-RATE-CONSTANT    -9.22185
+*REF-TEMP-RATE-CONST       25.00
+
+*ANNIH-MATRIX
+  1 0 0 0 0 0 0 0 0 0 1 1 0 0
+  0 1 0 0 0 0 0 0 0 0 0 0 0 0
+  0 0 1 0 0 0 0 0 0 0 1 1 1 2
+  0 0 0 1 0 0 0 0 0 0 -1 -2 -1 -2
+  0 0 0 0 1 0 0 0 0 0 0 0 0 1
+  0 0 0 0 0 1 0 0 0 0 0 0 0 0
+  0 0 0 0 0 0 1 0 0 0 0 0 0 0
+  0 0 0 0 0 0 0 1 0 0 0 0 0 0
+  0 0 0 0 0 0 0 0 1 0 0 0 0 0
+  0 0 0 0 0 0 0 0 0 1 0 0 0 0
+
+*PSAT -1
+*PHASEID *GAS
+*SOLUBILITY
+*CW  4.35E-07
+*REFPW 13100.0
+*OGW_FLASH *ON
+*METHOD-OGW 1
+*SATWCUTOFF 0.07
+*SWR-H2OVAP 0.1
+**COMPONENT 2 IS A TRACE COMPONENT
+*TRACE-COMP 2
+**DIFFUSION COEFFICIENT IN CM2/S
+*DIFFC-AQU 2.0E-05 0.0 0.0
+*PERM-VS-POR 1
+*DERIVATIVE_METHOD *NUMERALL
+
+CO2-AQU-FACT
+
+**'H+'   'Al+++'   'Ca++'   'SiO2(aq)'   'Fe++' 	'K+'   'Mg++'   'HCO3-'   'CO3--'   'OH-'  'Al(OH)2+'
+   0    	0       0      	0      			0     	 0      0    	1 1 0 0
+
+CO2-MNR-FACT
+**'Calcite'   'Kaolinit'   'Anorthit'   'Chalcedo'   'Annite' 'Dolomite'   'Illite'   'Siderite'  
+1 0 0 0 0 2 0 1
+
+** ***********************************************
+** relative permeabilities
+** ***********************************************
+
+ROCKFLUID
+RPT 1
+SWT
+**	Sw  krw   krow
+0.	0	1
+1	1	0
+SGT
+**$   Sg   krg    krog
+0	0	1
+1.	1	0
+
+
+** ***********************************************
+** initial conditions
+** ***********************************************
+
+INITIAL
+
+VERTICAL DEPTH_AVE WATER_GAS EQUIL NOTRANZONE
+
+*ZGAS 
+0.006 0.997781 0.001219
+
+REFPRES 
+  3447
+
+REFDEPTH 
+  2438
+
+DWGC 
+  2377
+
+SWOC 
+  0.9995
+
+GASZONE NOOIL
+
+*MOLALITY-AQUEOUS
+**'H+'   'Al+++'   'Ca++'   'SiO2(aq)'   'Fe++' 	'K+'   'Mg++'   'HCO3-'   'CO3--'   'OH-'  'Al(OH)2+'
+5.71E-07	3.13E-12	0.0251972	0.000473072	0.000273353	0.00989081	0.00261507	0.00213852	4.23E-07	4.49E-08	1.28E-09
+
+*VOLUMEFRACTION-MINERAL
+0.0088 0.0088 0.0088 0.0176 0.0264 0.7128 0.044 0.0088
+
+**-------------------------------------NUMERICAL METHOD-----------------
+NUMERICAL
+  *NORM *PRESS  1000.
+     *NORM *SATUR  0.05 
+     *NORM *GMOLAR 0.005
+     *NORM *AQUEOUS 0.3
+     *MAXCHANGE *SATUR  0.8
+     *MAXCHANGE *GMOLAR 0.8
+     *CONVERGE *PRESS 1.E-05
+     *CONVERGE *HC    1.E-04
+     *CONVERGE *WATER 1.E-04
+     *CONVERGE *MAXRES 5.E-05
+     *PRECC 1.E-06
+     *NORTH 80
+     *ITERMAX 200
+     *DTMIN 1.E-06
+     *DTMAX 75
+
+**-------------------------------------WELL DATA------------------------
+*RUN
+*TIME 0
+
+WELL  'INJ'
+*INJECTOR 'INJ'
+*INCOMP SOLVENT 1 0
+*OPERATE MAX STG 25.E+07 CONT
+*OPERATE MAX BHP 4136.854374 CONT
+PERF  WI  'INJ'
+**$ UBA    wi      Status  Connection  
+    1 1 1  294.53  OPEN    FLOW-FROM  'SURFACE'
+
+
+WELL  'PROD'
+*PRODUCER 'PROD'
+*OPERATE MIN BHP 2758 CONT
+PERF  WI  'PROD'
+**$ UBA      wi      Status  Connection  
+    102 1 1  294.53  OPEN    FLOW-TO  'SURFACE'
+    
+*DTMAX 0.5
+
+*TIME 10
+*TIME 20
+*TIME 30
+*TIME 40
+*TIME 50
+
+*STOP

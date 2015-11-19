@@ -1,0 +1,17 @@
+# --- Field Data ----------------------------------
+Field_Name: Homogeneous
+
+# --- Reservoirs Data ------------------------------
+NumOfReservoirs		1
+INCLUDE res_COMP.in
+
+END_RESERVOIRS
+
+# --- Wells Data ----------------------------------
+NumOfWells 2
+INCLUDE wells_COMP.in
+
+END_WELLS
+
+# --- Control Data --------------------------------
+INCLUDE control.in

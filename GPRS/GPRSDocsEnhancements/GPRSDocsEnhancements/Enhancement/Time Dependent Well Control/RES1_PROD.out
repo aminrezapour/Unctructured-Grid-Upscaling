@@ -1,0 +1,28 @@
+Results for well: PROD in the reservoir: RES1
+
+  t       BHP	     q(Oil)       q(Water)
+(days)   (psia)    (STB/day)    (STB/day)
+       0  Well closed
+       1  Well closed
+       2  Well closed
+3         3260.85     6000        0         
+4         Well closed
+5         3666.88     4000        0         
+6         3557.45     4000        0         
+7.44      Well closed
+8.44      Well closed
+9.8469    Well closed
+10        4000        4216.41     0         
+11        4000        2970.18     0         
+12.1646   4000        2695.47     0         
+14.6047   4000        2571.16     0         
+15        4000        2557.05     0         
+16        3000        6423.33     0         
+17        3000        5758.28     0         
+18.5356   3000        5430.4      0         
+20        3000        5252.67     0         
+23.1154   Well closed
+24.1154   Well closed
+25.5778   Well closed
+28.025    Well closed
+30        Well closed

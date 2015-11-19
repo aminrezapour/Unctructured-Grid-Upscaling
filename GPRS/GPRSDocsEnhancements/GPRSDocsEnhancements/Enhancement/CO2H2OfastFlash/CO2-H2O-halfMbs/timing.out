@@ -1,0 +1,31 @@
+Explicit Flash Pstep=100 in NTTS9
+ -------------------------- Timing Report -------------------------- 
+
+ Initialization time: ------------    7.609 sec  (   0 % )
+ Property Calc  time: ------------  35756.9 sec  (  24 % )
+ Linearization  time: ------------  30500.4 sec  (  20 % )
+ Newton Update  time: ------------  577.316 sec  (   0 % )
+ Pressure decouple time: ---------  15351.3 sec  (  10 % )
+
+ Pressure Pre running time: ------  26692.5 sec  (  18 % )
+ (B)ILU Pre running time: --------  10596.5 sec  (   7 % )
+ CPR Pre running time: -----------  48300.9 sec  (  32 % )
+ Solver running time: ------------  84373.3 sec  (  56 % )
+ Total running time: -------------   151425 sec  ( 100 % )
+
+ No. of timesteps: ---------------      822
+
+ No. of Newton Iters : -----------     3709
+ No. of Waste Newton Iters : -----        0
+
+ No. of Solver Iters : -----------    15312
+ No. of Waste Solver Iters : -----        0
+
+ No. of Pres slvr iters : --------    15501
+ No. of Waste Pres slvr iters: ---        0
+
+ Compositional simulation only:
+ Initialization time for reservoir: ------------    5.875 sec
+ Phase equilibrium running time: ------------  7705.47 sec
+
+

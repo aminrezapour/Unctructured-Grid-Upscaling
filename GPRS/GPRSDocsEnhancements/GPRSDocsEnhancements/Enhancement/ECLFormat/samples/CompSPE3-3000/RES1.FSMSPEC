@@ -1,0 +1,12 @@
+ 'DIMENS  '           6 'INTE'
+           5           5           5           5           0          -1
+ 'KEYWORDS'           5 'CHAR'
+ 'TIME    ' 'WBHP    ' 'WGPR    ' 'WOPR    ' 'WWPR    '
+ 'WGNAMES '           5 'CHAR'
+ ':+:+:+:+' 'PROD    ' 'PROD    ' 'PROD    ' 'PROD    '
+ 'NUMS    '           5 'INTE'
+           0           0           0           0           0
+ 'UNITS   '           5 'CHAR'
+ 'DAYS    ' 'PSIA    ' 'MSCF/DAY' 'STB/DAY ' 'STB/DAY '
+ 'STARTDAT'           3 'INTE'
+           1           1        2000

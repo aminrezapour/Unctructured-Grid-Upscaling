@@ -1,0 +1,60 @@
+
+ Simulation Finished Successfully 
+
+
+ -------------------------- Performance Report -------------------------- 
+
+
+ ------------ Mass Balance Error Report ------------- 
+
+ OCIP     :	4.94696e+006	7.93149e+006	2.69793e+008	3.55281e+007	2.41624e+007	3.95348e+007	1.93994e+007	6.19392e+006	1.34917e+006	
+
+ Residual :	4.98629e+006	7.99472e+006	2.71943e+008	3.58096e+007	2.43503e+007	3.9796e+007	1.9486e+007	5.90159e+006	1.28055e+006	
+ Facilty  :	251593	403381	1.37212e+007	1.8069e+006	1.22886e+006	2.01067e+006	986620	315012	68616.4	
+ Facilty  :	-290928	-466622	-1.58714e+007	-2.08832e+006	-1.41677e+006	-2.27186e+006	-1.07315e+006	-22687.4	-0.401574	
+
+ MB_Error :	1.3993	2.24426	76.3353	10.045	6.81661	10.9552	5.19738	0.289499	0.0419016	
+ Rel_Error:	0%	0%	0%	0%	0%	0%	0%	0%	0%	
+
+
+ Variable Type : -----------------  Natural Variables
+ Number of Implicit levels: ------        1
+                    ImpVar --- TransImpLvl --- CFL_Limit --- Percent
+       Scheme 0 :     9             4             1           100%
+
+ Linear solver choice : ----------        4
+ Preconditioner choice : ---------        4
+ Linear solver Tolerance : -------   0.0001
+
+ Total running time: -------------   48.517 sec  ( 100 % )
+   -Initialization time: ---------    0.375 sec  (   1 % )
+   -Property Calc  time: ---------    5.767 sec  (  12 % )
+   -Linearization  time: ---------   10.875 sec  (  22 % )
+   -Newton Update  time: ---------    0.047 sec  (   0 % )
+   -Solver running time: ---------   22.206 sec  (  46 % )
+      --(B)ILU Pre fac time: -----   12.627 sec  (  26 % )
+      --(B)ILU Pre slv time: -----    0.639 sec  (   1 % )
+      --Pres dcpl time: ----------    3.661 sec  (   8 % )
+      --Pres slv time: -----------    0.263 sec  (   1 % )
+   -Timestep Calc  time: ---------        0 sec  (   0 % )
+   -CFL No.  Calc  time: ---------        0 sec  (   0 % )
+
+
+ Compositional simulation only:
+ Initialization time for reservoir: ---------    0.016 sec
+ Phase equilibrium running time: ------------    1.683 sec
+
+
+ No. of timesteps: ---------------      105
+
+ No. of Newton Iters : -----------      214
+ No. of Waste Newton Iters : -----        0
+
+ No. of Solver Iters : -----------      564
+ No. of Waste Solver Iters : -----        0
+
+ No. of Pres slvr iters : --------      564
+ No. of Waste Pres slvr iters: ---        0
+
+ Total elapsed = 48.517, steps = 105, Newton = 214, linear = 564
+

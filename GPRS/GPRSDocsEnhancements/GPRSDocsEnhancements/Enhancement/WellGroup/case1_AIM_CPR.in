@@ -1,0 +1,339 @@
+# --- Field Data -----------------------------------
+Field_Name: SPE10
+
+####################################################
+# -------------- Reservoirs Data ------------------#
+####################################################
+NumOfReservoirs		1
+
+####################################################
+RESERVOIR_NAME   RES1
+####################################################
+
+GRID_DATA  #########################################
+GRIDSIZE 20 20 1
+DX
+	80
+DY
+	80
+DZ
+	40
+PERMX
+	#INCLUDE  permx5_left.dat
+	300
+PERMY
+  	#INCLUDE  permx5_left.dat
+	300
+PERMZ
+	#INCLUDE  permx5_left.dat
+	30
+PORO
+	#INCLUDE  poro5_left.dat
+	0.20
+PORO_TOL
+	0.001  
+TOPS     
+	12000
+TEMP 
+	500
+END
+
+FLUID_DATA  ######################################### 
+FLUID_TYPE BLACK_OIL
+NPHASES      2
+NCOMPONENTS  2
+
+# Phase data -------------
+PHASE_NAME OIL 
+STANDARD_DENS 53.0
+NUM_OF_TABLE_ENTRIES 3
+#      P        BO        VISC     RGO        
+#     PSI      RB/STB      CP     SCF/STB    
+      300      1.05       2.85      0
+      800      1.02       2.99      0
+     8000      1.01       3.00      0
+
+PHASE_NAME WATER 
+STANDARD_DENS  64.0  #lb/ft^3
+NUM_OF_TABLE_ENTRIES 3 #4
+#      P        BW        VISC		RGW
+#     PSI     RB/BBL       CP		SCF/STB
+      300      1.05       2.85      0
+      800      1.02       2.99      0
+     8000      1.01       3.00      0
+
+#      300      1.027       0.3       0
+#      800      1.026       0.3       0
+#     6000      1.010       0.3       0    
+#     8000      1.004       0.3       0
+# compressibility=3E-6
+
+# --- component data -------------
+END
+
+PHASE_COMP_RELATION_DATA ############################
+# --- component phase relation, nPhases X nComps ---
+#comp:	oil	water
+		1	0	#oil
+		0	1	#water
+END
+
+ROCKFLUID_DATA ######################################
+
+#OILWATERPERM 1
+OW
+NUM_OF_TABLE_ENTRIES 	14 
+#TABLE  SW       KRW      KROW    PCOW
+      	0.200    0.0000    1.0000      0
+      	0.250    0.0069    0.8403      0
+      	0.300    0.0278    0.6944      0
+      	0.350    0.0625    0.5625      0
+      	0.400    0.1111    0.4444      0
+      	0.450    0.1736    0.3403      0
+      	0.500    0.2500    0.2500      0
+      	0.550    0.3403    0.1736      0
+      	0.600    0.4444    0.1111      0
+      	0.650    0.5625    0.0625      0
+      	0.700    0.6944    0.0278      0
+      	0.750    0.8403    0.0069      0
+      	0.800    1.0000    0.0000      0
+      	1.000    1.0000    0.0000      0
+#	0        0         1           0
+#	1        1         0           1
+END
+
+ROCK_DATA ###########################################
+#		COMP.    REF. PRES
+		1.E-6     14.7
+END
+
+EQUILIBRIUM_DATA ####################################
+#   	Swi		Sor		Sgr
+	0.3		0.2		0.0
+
+#	pres	@depth	WOC	GOC
+	6000	12000	15000	 2370
+END
+END_RESERVOIR
+
+END_RESERVOIRS
+
+
+####################################################
+# ----------------- Wells Data --------------------#
+####################################################
+# ------------------------------------------------------------------------------------------------
+NumOfWellGroup        1
+
+# --- definition (WELSPECS) -------------
+#  GROUP_NAME     No. of wellS in group
+PROD              3
+
+#Pipeline between wellheads and junction
+#length, dh, diameter, rough
+800  0   0.15  0.05
+800  0   0.15  0.05
+800  0   0.15  0.05
+
+#---------------------------------------------------
+# subwell No. 1
+#---------------------------------------------------
+
+# --- definition (WELSPECS) -------------
+#  WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+   MSWell_1   	 PROD    RES1		P	OPEN
+END
+
+# (WELSEGS)
+#  Dep   Tlen    Vol   Len&Dep   PresDrop    FlowModel          
+   10     1       1    INC       HF          HO    
+END
+
+number_of_segments 5
+# No.of  Branch  Outlet  Length  Depth   Diam    Rough              
+# Seg    Num     Seg     Change  Change
+1	0	0	3000	3000	0.15	0.001	# vertical zone
+2	0	1	3000	3000	0.15	0.001	# vertical zone
+3	0	2	3000	3000	0.15	0.001	# vertical zone
+4	0	3	3000	3000	0.15	0.001	# vertical zone
+END
+   
+# -completion (COMPDAT)---------------
+number_of_connections 1
+#LOC(i,j,k)     WI       Seg No.
+304  	        15782	 4		
+END
+
+NOCTRL
+
+END_WELL
+
+#---------------------------------------------------
+# subwell No. 2
+#---------------------------------------------------
+
+# --- definition (WELSPECS) -------------
+#  WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+   MSWell_2   	 PROD    RES1		P	OPEN
+END
+
+# (WELSEGS)
+#  Dep   Tlen    Vol   Len&Dep   PresDrop    FlowModel          
+   10     1       1    INC       HF         HO   
+END
+
+number_of_segments 5
+# No.of  Branch  Outlet  Length  Depth   Diam    Rough              
+# Seg    Num     Seg     Change  Change
+1	0	0	3000	3000	0.15	0.001	# vertical zone
+2	0	1	3000	3000	0.15	0.001	# vertical zone
+3	0	2	3000	3000	0.15	0.001	# vertical zone
+4	0	3	3000	3000	0.15	0.001	# vertical zone
+END
+   
+# -completion (COMPDAT)---------------
+number_of_connections 1
+#LOC(i,j,k)     WI       Seg No.
+# branch 1
+57            15782	 4		
+END
+
+NOCTRL
+
+END_WELL
+
+#---------------------------------------------------
+# subwell No. 3
+#---------------------------------------------------
+
+# --- definition (WELSPECS) -------------
+#  WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+   MSWell_3   	 PROD    RES1		P	OPEN
+END
+
+# (WELSEGS)
+#  Dep   Tlen    Vol   Len&Dep   PresDrop    FlowModel          
+   10     1       1    INC       HF         HO    
+END
+
+number_of_segments 5
+# No.of  Branch  Outlet  Length  Depth   Diam    Rough              
+# Seg    Num     Seg     Change  Change
+1	0	0	3000	3000	0.15	0.001	# vertical zone
+2	0	1	3000	3000	0.15	0.001	# vertical zone
+3	0	2	3000	3000	0.15	0.001	# vertical zone
+4	0	3	3000	3000	0.15	0.001	# vertical zone
+END
+   
+# -completion (COMPDAT)---------------
+number_of_connections 1
+#LOC(i,j,k)     WI       Seg No.
+# branch 1
+42          15782	 4		
+END
+
+NOCTRL
+END_WELL
+
+# --- control (WCONPROD/WCONINJE)--------
+#  CTRL       BHPmin
+   GRPORATE   1500  14.7  53.0
+END
+   
+END_WELLGROUP
+
+#---------------------------------------------------------------------
+
+NumOfStdWells          1
+
+####################################################
+# WELL No. 1
+####################################################
+# --- definition (WELSPECS) -------------
+#  WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+   I1     	 INJW  	 RES1		I	OPEN
+END
+
+# --- completion (COMPDAT)---------------
+number_of_connections 1
+#LOC(i,j,k)     	WI  
+357  	   		15782
+
+END
+
+# --- control (WCONPROD/WCONINJE)--------
+#  CTRL     Q     BHP    std_den   Ncomp %comp1 %comp2
+#  WRATE   1500    7000     64.0       2      0      1
+  BHP            7000               2      0      1
+END   
+END_WELL                            
+
+END_WELLS                 
+                     
+####################################################
+# ---------------- Control Data -------------------#
+####################################################
+# Timestep boundaries 
+# TSINIT TSMAX TSMIN 
+      0.1    -1     0.0001
+                     
+# Total Simulation Time (Days)
+365
+
+#No of points: different maximum & minimum timesteps
+   2
+
+#TIME TSMAXZ TSMIN
+
+0      1       0.001
+
+300    1       0.001
+                 
+# Newton iterations control
+# minNewtonIter	maxNewtonIter	fixedNewtonIter
+              1	           60	            60
+# Timestep increase control
+# dpress    dsat    dx    w(tuning)	small w ~ aggressive increasing ts
+     200    0.4    0.02    0.8
+                     
+# Newton iteration convergence control
+# MB_Error PE_Error P_Change S_Change MF_Change
+#       0.1	   0.02   0.0001	  0.005     0.001 0.001
+        0.1	   0.02   1	          1         1 	  0.001
+                     
+# Formulation (variables and implicit levels) control
+# varType(AorB)	nbImpLevel    %AIM (if nbImpLevel>1)
+        1	    2  	0.9
+# for each Implicit Level (1 to nbImpLevel):
+# nImpVars  transOption  CFL
+1      1      1.0      
+2    	4    	1.0       
+                     
+                     
+# Linear solver control
+# LinearSolverChoice  Preconditioner  tol  maxLinearIter
+            5		    12       1E-3      300   200
+# --- debug information ---
+#Flag   NumOfTimeSteps
+0	10
+0       1
+
+# Append data?
+0
+
+BREAKTIME 14
+10
+20
+30
+40
+50
+100
+130
+150
+155
+160
+200
+250
+300
+350
+END_CONTROL

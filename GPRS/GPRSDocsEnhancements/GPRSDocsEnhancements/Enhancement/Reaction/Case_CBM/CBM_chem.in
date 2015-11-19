@@ -1,0 +1,40 @@
+CHEM_DATA  ##########################################
+
+NELEMENTS 3
+NREACTION 3
+
+CONSERVE_EQNS	COMPONENT	# if only kinetic adsorption considered, use COMPONENT
+CONCENTR_MODLE 	ON		# in ECBM problem this must be ON
+ACTIVITY_MODLE	OFF		# OFF
+KINETICR_CUTOFF	0		# 0 for each species
+
+#RXN_ELEMENT_NAMES
+CO2	N2	CH4
+
+# --- Molecular Weight for each element ---
+# --- can be found at www.ch.cam.ac.uk/magnus/MolWeight.html --- 
+44	28	16
+
+# --- COMP_ELEMENT_DATA   # size = nElements x (nHC + nAQUComps + nMIN) ----
+# CO2	N2	CH4	CO2(s)N2(s)	CH4(s)	
+1	0	0	1	0	0	#CO2
+0	1	0	0	1	0	#N2
+0	0	1	0	0	1	#CH4
+															
+# --- Reaction rates or equilibrium constants ---
+# RATE_ECBM::(1) rho_s [kg/m3] (2) qmi [mol/g]      (3) kmi [1/s] 
+#            (4) comp index    (5) total # HC comps (6-n) each bi [1/Pa]
+
+RATE_ECBM	1356.6	2.49E-03	3.90E-06	0	3	1.25E-06	1.40E-07	6.26E-07	# CO2
+RATE_ECBM	1356.6	1.52E-03	2.30E-06	1	3	1.25E-06	1.40E-07	6.26E-07	# N2
+RATE_ECBM	1356.6	1.56E-03	2.30E-06	2	3	1.25E-06	1.40E-07	6.26E-07	# CH4
+
+# --- REACTION_STOICHIOMETRIC_COEFF  ---  	
+# --- size = nReaction x (nHC(g) + nHC(l) + nSolid) ---
+# CO2(g)	N2(g)	CH4(g)	CO2(l)	N2(l)	CH4(l)	CO2(s)	N2(s)	CH4(s)
+
+-1	0	0	0	0	0	1	0	0
+0	-1	0	0	0	0	0	1	0
+0	0	-1	0	0	0	0	0	1
+
+END_CHEM

@@ -1,0 +1,59 @@
+
+ Simulation Finished Successfully 
+
+
+ -------------------------- Performance Report -------------------------- 
+
+
+ ------------ Mass Balance Error Report ------------- 
+
+ OCIP     :	1.80896e+009	8.05111e+009	1.1159e+010	
+
+ Residual :	1.80514e+009	8.03409e+009	1.07049e+010	
+ Facilty  :	3.82396e+006	1.70193e+007	4.54096e+008	
+
+ MB_Error :	2.9583e-005	0.000135817	0.00208694	
+ Rel_Error:	0%	0%	0%	
+
+
+ Variable Type : -----------------  Natural Variables
+ Number of Implicit levels: ------        1
+                    ImpVar --- TransImpLvl --- CFL_Limit --- Percent
+       Scheme 0 :     3             4             1           100%
+
+ Linear solver choice : ----------        5
+ Preconditioner choice : ---------       11
+ Linear solver Tolerance : -------   1e-006
+
+ Total running time: -------------       22 sec  ( 100 % )
+   -Initialization time: ---------        0 sec  (   0 % )
+   -Property Calc  time: ---------    1.697 sec  (   8 % )
+   -Linearization  time: ---------    5.522 sec  (  25 % )
+   -Newton Update  time: ---------    0.345 sec  (   2 % )
+   -Solver running time: ---------   11.222 sec  (  51 % )
+      --(B)ILU Pre fac time: -----    3.864 sec  (  18 % )
+      --(B)ILU Pre slv time: -----     3.58 sec  (  16 % )
+      --Pres dcpl time: ----------        0 sec  (   0 % )
+      --Pres slv time: -----------        0 sec  (   0 % )
+   -Timestep Calc  time: ---------        0 sec  (   0 % )
+   -CFL No.  Calc  time: ---------        0 sec  (   0 % )
+
+
+ Compositional simulation only:
+ Initialization time for reservoir: ---------        0 sec
+ Phase equilibrium running time: ------------        0 sec
+
+
+ No. of timesteps: ---------------       44
+
+ No. of Newton Iters : -----------      290
+ No. of Waste Newton Iters : -----        0
+
+ No. of Solver Iters : -----------     3794
+ No. of Waste Solver Iters : -----        0
+
+ No. of Pres slvr iters : --------        0
+ No. of Waste Pres slvr iters: ---        0
+
+ Total elapsed = 22, steps = 44, Newton = 290, linear = 3794
+

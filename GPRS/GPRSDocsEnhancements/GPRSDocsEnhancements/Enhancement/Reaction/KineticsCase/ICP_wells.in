@@ -1,0 +1,30 @@
+# ---------- Input of wells data -----------
+
+# //////// WELL No. 1 ////////////////////
+# --- well definition -----
+#WELSPECS
+#  WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+   PROD     	 GRP1    RES1		P	OPEN
+
+END
+# --- well connections (trajestry) -------
+#COMPDAT
+number_of_connections 1
+#LOC(i,j,k)     WI  
+    5		5481
+END
+
+# --- well control ----------------------
+#WCONPROD
+#   CTRL    Q     BHP     std_den
+	BHP 	30
+END                                                                 
+
+END_WELL
+
+
+
+
+
+
+

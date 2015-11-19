@@ -1,0 +1,102 @@
+RESERVOIR_NAME   RES1
+
+GRID_DATA  #########################################
+GRIDSIZE 11 11 5
+DX
+  50
+DY
+  50
+DZ
+  25
+
+PERMX
+	INCLUDE permx.dat
+PERMY
+	INCLUDE permy.dat
+PERMZ
+	INCLUDE permz.dat
+PORO
+	0.25
+TOPS     
+	8000
+TEMP 
+	500
+END
+
+FLUID_DATA  #########################################
+FLUID_TYPE BLACK_OIL
+NPHASES      2
+NCOMPONENTS  2
+
+
+# Phase data -------------
+PHASE_NAME OIL 
+STANDARD_DENS 46.244
+NUM_OF_TABLE_ENTRIES 2
+#      P        BO        VISC     RGO        
+#     PSI      RB/STB      CP     SCF/STB    
+     14.7      1        116.3      0
+     10014.7      1        116.3      0
+
+PHASE_NAME WATER 
+STANDARD_DENS 62.238
+NUM_OF_TABLE_ENTRIES 2
+#      P        BW        VISC		RGW
+#     PSI     RB/BBL       CP		SCF/STB
+      14.7    1	0.5		0
+     10014.7      1        0.5      0
+# --- component data -------------
+
+END
+
+PHASE_COMP_RELATION_DATA ##########################
+# --- component phase relation (nPhases by nComps) ---
+#comp:		gas	oil	water
+		1	0	#oil
+		0	1	#water
+
+END
+
+ROCKFLUID_DATA #####################################
+
+INCLUDE swof.dat
+
+END
+
+MULTI_ROCKFLUID #####################################
+
+INCLUDE multirock.dat
+DIRKR
+INCLUDE krnx.dat
+INCLUDE krny.dat
+INCLUDE krnz.dat
+
+END
+
+ROCK_DATA ##########################################
+#		COMP.    REF. PRES
+		3.E-6     14.7
+
+END
+
+EQUILIBRIUM_DATA ##########################################
+#   	Swi		Sor		Sgr
+	0.0		0.15		0.0
+
+#	pres	@depth	WOC		GOC
+	4800	8400	10000	        5100
+END
+
+
+END_RESERVOIR
+
+
+
+
+
+
+
+
+
+
+

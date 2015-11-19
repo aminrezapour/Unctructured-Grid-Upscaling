@@ -1,0 +1,12 @@
+*FILES 'model10.irf'
+*TABLE-FOR
+
+*COLUMN-FOR *PARAMETERS 'Well Block Pressure' *WELLS 'inj'
+*COLUMN-FOR *SPECIAL 'PRES 20,20,1 Pressure.'
+*COLUMN-FOR *PARAMETERS 'Well Block Pressure' *WELLS 'pro'
+*COLUMN-FOR *SPECIALS 'PRES  Average Reservoir Pressure.'
+*COLUMN-FOR *SPECIAL 'SW 20,20,1 Water Saturation.'
+*COLUMN-FOR *SPECIAL 'SW 40,1,1 Water Saturation.'
+*COLUMN-FOR *PARAMETERS 'Cumulative Oil SC' *WELLS 'pro'
+
+*TABLE-END

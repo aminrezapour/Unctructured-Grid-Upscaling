@@ -1,0 +1,14 @@
+# --- Field Data ----------------------------------
+Field_Name: Simple
+
+
+# --- Reservoirs Data -----------------------------
+INCLUDE  bo_rsvr_t.in
+
+
+# --- Wells Data ----------------------------------
+INCLUDE  bo_wells.in
+
+
+# --- Control Data --------------------------------
+INCLUDE  bo_control.in

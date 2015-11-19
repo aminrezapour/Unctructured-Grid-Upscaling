@@ -1,0 +1,135 @@
+RESERVOIR_NAME   RES1
+
+GRID_DATA  #########################################
+GRIDSIZE  40 1 1
+DX
+  2
+DY
+  2
+DZ
+  2
+PERMX
+  200
+PERMY
+  200
+PERMZ
+  50
+PORO
+	0.3
+TOPS     
+	8300
+TEMP
+	530.4
+END
+
+FLUID_DATA  ######################################### 
+FLUID_TYPE COMPOSITIONAL
+NPHASES      2
+NCOMPONENTS 2
+
+# Phase data -------------
+#PHASE_NAMES 
+GAS  OIL
+
+
+# --- component data -------------
+#COMP_NAME
+C1 C7+1
+
+# --- Z(initial total mole fraction) for each component ---
+length_of_table 2
+1.  	  0.4 0.6
+10000.  0.4 0.6
+
+
+# --- Molecular Weight for each component ---
+16.04300     107.7794
+
+# --- Pc(Psia) for each component ---
+667.78170 401.74956
+
+# --- Tc(R) for each component ---
+343.08000 838.11282 
+
+#--- Vc (ft3/lb-mole) for each component -----
+1.5699 5.72
+
+# --- W for each component ---
+.01300     0.31230
+
+# --- Volume Shift Parameter (Dimensionless S) ----
+#0.024668 0.234867
+#0.024668 0.18
+0.0 0.0
+
+#--- K[ij] for each pair component ----------
+# Peng-Rubinson
+0.0 0.130663
+0.130663 0.0
+
+#Flash method: SSI or NEWTON
+SSI
+#      stabSwitchEps	flashSwitchEps
+#NEWTON 1.0e-1 		1.0e-1
+
+END
+
+PHASE_COMP_RELATION_DATA ##########################
+# --- component phase relation (nPhases by nComps) ---
+#comp:		C1      C7+1	
+		1 	1 	#gas
+		1 	1 	#oil
+
+END
+
+DIFFUSION_COEFF ##################################
+# --- component coefficient in phases (nPhases by nComps) ---
+#comp:		C1 	C7+1
+		0	0	#gas
+		0	0	#oil
+END
+
+DISPERSIVITY	################################
+# 	long	transverse	
+	1	0	#gas
+	1	0	#oil
+END
+
+
+ROCKFLUID_DATA #####################################
+
+#GASOILPERM 1
+GO
+NUM_OF_TABLE_ENTRIES 2 
+#TABLE      SG       KRG      KROg    PCOG
+
+         0         0    	1.0000         	0
+	 1	   1		0		0	    
+END
+
+ROCK_DATA ##########################################
+#		COMP.    REF. PRES
+		3.E-6     14.7
+
+END
+
+EQUILIBRIUM_DATA ##########################################
+#   	Swi		Sor		Sgr
+	0.0		0.00		0.0
+
+#	pres	@depth	WOC		GOC
+	2000	8325	10000	        8200
+END
+
+END_RESERVOIR
+
+
+
+
+
+
+
+
+
+
+

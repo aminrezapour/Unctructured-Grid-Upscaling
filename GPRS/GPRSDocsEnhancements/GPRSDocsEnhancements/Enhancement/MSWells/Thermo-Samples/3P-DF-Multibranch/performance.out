@@ -1,0 +1,59 @@
+
+ Simulation Finished Successfully 
+
+
+ -------------------------- Performance Report -------------------------- 
+
+
+ ------------ Mass Balance Error Report ------------- 
+
+ OCIP     :	6.84126e+008	3.0381e+009	2.70345e+008	
+
+ Residual :	6.71658e+008	2.98896e+009	2.11167e+008	
+ Facilty  :	1.24678e+007	4.91406e+007	5.91783e+007	
+
+ MB_Error :	4.84288e-008	-1.46404e-005	-1.89841e-005	
+ Rel_Error:	0%	0%	0%	
+
+
+ Variable Type : -----------------  Natural Variables
+ Number of Implicit levels: ------        1
+                    ImpVar --- TransImpLvl --- CFL_Limit --- Percent
+       Scheme 0 :     3             4             1           100%
+
+ Linear solver choice : ----------        5
+ Preconditioner choice : ---------       11
+ Linear solver Tolerance : -------   1e-006
+
+ Total running time: -------------       65 sec  ( 100 % )
+   -Initialization time: ---------        0 sec  (   0 % )
+   -Property Calc  time: ---------    7.925 sec  (  12 % )
+   -Linearization  time: ---------   21.411 sec  (  33 % )
+   -Newton Update  time: ---------    1.139 sec  (   2 % )
+   -Solver running time: ---------     22.5 sec  (  35 % )
+      --(B)ILU Pre fac time: -----     18.4 sec  (  28 % )
+      --(B)ILU Pre slv time: -----    4.538 sec  (   7 % )
+      --Pres dcpl time: ----------        0 sec  (   0 % )
+      --Pres slv time: -----------        0 sec  (   0 % )
+   -Timestep Calc  time: ---------    0.047 sec  (   0 % )
+   -CFL No.  Calc  time: ---------        0 sec  (   0 % )
+
+
+ Compositional simulation only:
+ Initialization time for reservoir: ---------        0 sec
+ Phase equilibrium running time: ------------        0 sec
+
+
+ No. of timesteps: ---------------      192
+
+ No. of Newton Iters : -----------     1667
+ No. of Waste Newton Iters : -----        0
+
+ No. of Solver Iters : -----------     7171
+ No. of Waste Solver Iters : -----        0
+
+ No. of Pres slvr iters : --------        0
+ No. of Waste Pres slvr iters: ---        0
+
+ Total elapsed = 65, steps = 192, Newton = 1667, linear = 7171
+

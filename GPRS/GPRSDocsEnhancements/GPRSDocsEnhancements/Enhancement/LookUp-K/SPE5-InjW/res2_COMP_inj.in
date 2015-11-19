@@ -1,0 +1,162 @@
+RESERVOIR_NAME   RES1
+
+GRID_DATA  #########################################
+GRIDSIZE  7 7 3
+DX
+  500
+DY
+  500
+DZ
+  49*20  49*30 49*50
+PERMX
+  49*500 49*50 49*200
+PERMY
+  49*500 49*50 49*200
+PERMZ
+  49*50  49*50 49*25
+PORO
+	0.3
+TOPS     
+	8325
+TEMP
+	620
+END
+
+FLUID_DATA  ######################################### 
+FLUID_TYPE COMPOSITIONAL
+NPHASES      3
+NCOMPONENTS 7
+
+# Phase data -------------
+#PHASE_NAMES 
+GAS  OIL WATER
+
+
+# --- component data -------------
+#COMP_NAMES
+C1 C3 C6 C10 C15 C20 WATER
+
+# --- Z(initial total mole fraction) for each component ---
+length_of_table 2
+1       0.5 0.03 0.07 0.2 0.15 0.05
+10000.0 0.5 0.03 0.07 0.2 0.15 0.05
+
+# --- Molecular Weight for each component ---
+ 16.04  44.10  86.18 149.29 206.00 282.00
+
+# --- Pc(Psia) for each component ---
+667.8 616.3 436.9 304.0 200.0 162.0
+
+# --- Tc(R) for each component ---
+343.0 665.7 913.4 1111.8 1270.0 1380.0
+
+#--- Vc (ft3/lb-mole) for each component -----
+1.598450  3.210847  5.922927  10.08648 16.69526  21.48253
+
+# --- W for each component ---
+0.013 0.1524 0.3007 0.4885 0.6500 0.8500
+
+# --- Volume Shift Parameter (Dimensionless S) ----
+0 0 0 0 0 0
+#--- K[ij] for each pair component ----------
+# Peng-Rubinson
+   0.0    0.0    0.0     0.0     0.05    0.05
+   0.0    0.0    0.0     0.0     0.005   0.005
+   0.0    0.0    0.0     0.0     0.0     0.0   
+   0.0    0.0    0.0     0.0     0.0     0.0 
+   0.05   0.005  0.0     0.0     0.0     0.0 
+   0.05   0.005  0.0     0.0     0.0     0.0
+
+#Water PVT Data
+PVTW
+#Ref_pressure density  compressibility viscosity  viscosity_compressibility
+  1000		62.4	3.3E-6		0.7		0.0
+
+#Flash method: SSI or NEWTON
+#SSI
+#      stabSwitchEps	flashSwitchEps
+NEWTON   1.0e-4 	   1.0e-4
+
+EXPFLASH  spe5.dat
+#NUMFEI
+
+END
+
+PHASE_COMP_RELATION_DATA ##########################
+# --- component phase relation (nPhases by nComps) ---
+#comp:	C1      C2	C3	C4	C5	C6  	WATER
+	1	1	1	1	1	1	0 #gas
+	1	1	1	1	1	1	0 #oil
+	0	0	0	0	0	0	1 #water
+
+END
+
+ROCKFLUID_DATA #####################################
+
+#OILWATERPERM 1
+OW
+NUM_OF_TABLE_ENTRIES 	11 
+#TABLE  SW       KRW    KROW    PCOW
+0.2	0	1	0
+0.2899	0.0022	0.6769	0
+0.3778	0.018	0.4153	0
+0.4667	0.0607	0.2178	0
+0.5556	0.1438	0.0835	0
+0.6444	0.2809	0.0123	0
+0.7	0.4089	0	0
+0.7333	0.4855	0	0
+0.8222	0.7709	0	0
+0.9111	1	0	0
+1	1	0	0
+
+
+#GASOILPERM 1
+GO
+NUM_OF_TABLE_ENTRIES 12
+#TABLE      SG       	KRG           KROg    PCOG
+0	0	1	0
+0.05	0	0.7023	0
+0.0889	0.001	0.4705	0
+0.1778	0.01	0.2963	0
+0.2667	0.03	0.1715	0
+0.3556	0.05	0.0878	0
+0.4444	0.1	0.056	0
+0.5333	0.2	0.037	0
+0.6222	0.35	0.011	0
+0.65	0.39	0	0
+0.7111	0.56	0	0
+0.8	1	0	0
+
+STONEI
+
+#HYST CARLSON 23
+
+
+END
+
+ROCK_DATA ##########################################
+#		COMP.    REF. PRES
+		5.E-6     1000
+
+END
+
+EQUILIBRIUM_DATA ##########################################
+#   	Swi		Sor		Sgr
+	0.20 		0.0		0.0
+
+#	pres	@depth	WOC		GOC
+	4000	8400	9000	        7000
+END
+
+END_RESERVOIR
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,233 @@
+#   --- Field Data ----------------------------------
+Field_Name:   unknown
+#   --- Reservoirs Data ------------------------------
+NumOfReservoirs  		1
+
+RESERVOIR_NAME     RES1
+#MP_CONN  
+GRID_DATA    #########################################
+GRIDSIZE    10 10 3
+DX  
+1000
+DY  
+1000  
+DZ  
+100*20 100*30 100*50 
+PERMX 
+100*500 100*50 100*200
+PERMY  
+100*500 100*50 100*200  
+PERMZ  
+100*50 100*25 100*25
+PORO  
+0.264  
+TOPS       
+8325 
+TEMP  
+530  
+END    
+FLUID_DATA    ######################################### 
+FLUID_TYPE   BLACK_OIL
+NPHASES        3
+NCOMPONENTS   3
+#   Phase data -------------
+PHASE_NAME   GAS 
+STANDARD_DENS   0.06054
+NUM_OF_TABLE_ENTRIES   10
+#        P        BG        VISC		ROG
+#       PSI    RB/SCF       CP		STB/SCF
+14.7    0.166666    0.0080		0.0
+264.7    0.012093    0.0096		0.0
+514.7    0.006274    0.0112		0.0
+1014.7    0.003197    0.0140		0.0
+2014.7    0.001614    0.0189		0.0
+2514.7    0.001294    0.0208		0.0
+3014.7    0.001080    0.0228		0.0
+4014.7    0.000811    0.0268		0.0
+5014.7    0.000649    0.0309		0.0
+9014.7    0.000386    0.047		0.0
+PHASE_NAME   OIL 
+STANDARD_DENS   49.1
+NUM_OF_TABLE_ENTRIES   9
+#        P        BO        VISC     RGO        
+#       PSI      RB/STB      CP     SCF/STB    
+14.7       1.062      1.040     1.0    
+264.7       1.15     0.975     90.5    
+514.7       1.207     0.910    180.0    
+1014.7       1.295     0.830    371.0   
+2014.7       1.435     0.695    636.0    
+2514.7       1.5     0.641    775.0    
+3014.7       1.565     0.594    930.0    
+4014.7       1.695     0.51   1270.0    
+5014.7       1.671     0.549   1270.0 
+PHASE_NAME   WATER 
+STANDARD_DENS   64.79
+NUM_OF_TABLE_ENTRIES   9
+#        P        BW        VISC		RGW
+#       PSI     RB/BBL       CP		SCF/STB
+14.7      1.0410      0.31		0
+264.7      1.0403      0.31		0
+514.7      1.0395      0.31		0
+1014.7      1.0380      0.31		0
+2014.7      1.0350      0.31		0
+2514.7      1.0335      0.31		0
+3014.7      1.0320      0.31		0
+4014.7      1.0290      0.31		0
+9014.7      1.0130      0.31		0   
+#   --- component data -------------
+END
+
+  
+PHASE_COMP_RELATION_DATA   ##########################
+#   --- component phase relation (nPhases by nComps) ---
+1     0   0
+1     1   0
+0     0   1
+END  
+ROCKFLUID_DATA   #####################################
+#OILWATERPERM   1
+OW
+NUM_OF_TABLE_ENTRIES 21
+#TABLE Sw       KRw      KROw   PCow
+0.16  	0	0.8	0
+0.2  	0.002	0.65	0
+0.24  	0.01	0.513	0
+0.28  	0.02	0.4	0
+0.32  	0.033	0.315	0
+0.4  	0.066	0.196	0
+0.44  	0.09	0.15	0
+0.48  	0.119	0.112	0
+0.52  	0.15	0.082	0
+0.56  	0.186	0.06	0
+0.6  	0.227	0.04	0
+0.64  	0.277	0.024	0
+0.68  	0.33	0.012	0
+0.72  	0.39	0.005	0
+0.76  	0.462	0	0
+0.8  	0.54	0	0
+0.84  	0.62	0	0
+0.88  	0.71	0	0
+0.92  	0.8	0	0
+0.96  	0.9	0	0
+1  	1	0	0
+
+#OILGASPERM
+GO
+NUM_OF_TABLE_ENTRIES    21
+#TABLE      SG       KRG      KROG     PCGO
+0  	0	0.8	0
+0.04  	0.005	0.65	0
+0.08  	0.013	0.513	0
+0.12  	0.026	0.4	0
+0.16  	0.04	0.315	0
+0.24  	0.078	0.196	0
+0.28  	0.1	0.15	0
+0.32  	0.126	0.112	0
+0.36  	0.156	0.082	0
+0.4  	0.187	0.06	0
+0.44  	0.222	0.04	0
+0.48  	0.26	0.024	0
+0.52  	0.3	0.012	0
+0.56  	0.349	0.005	0
+0.6  	0.4	0	0
+0.64  	0.45	0	0
+0.68  	0.505	0	0
+0.72  	0.562	0	0
+0.76  	0.62	0	0
+0.8  	0.68	0	0
+0.84  	0.74	0	0
+
+END 
+ROCK_DATA   ##########################################
+#  		COMP.    REF. PRES
+3.E-6       14.7
+END  
+EQUILIBRIUM_DATA   ##########################################
+#     	Swi		Sor		Sgr
+0.16  		0.24		0.00
+
+#  	pres	@depth	WOC		GOC
+4020  	8335	9050	  7800      
+END  
+END_RESERVOIR  
+
+END_RESERVOIRS  
+#   --- Wells Data ----------------------------------
+NumOfWells            2
+
+#   ---------- Input of wells data -----------
+#   //////// WELL No. 1 ////////////////////
+#   --- well definition -----
+#WELSPECS  
+#    WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+PROD       	 GRP1    RES1		P	OPEN
+END  
+#   --- well connections (trajestry) -------
+#COMPDAT  
+number_of_connections   1
+#LOC(i,j,k)       WI  
+0          	966.302
+END  
+#   --- well control ----------------------
+#WCONPROD  
+#     CTRL    Q     BHP     std_den
+#      ORATE   10  100.0    46
+BHP  	    1000  
+END                                                                   
+END_WELL  
+#   //////// WELL No. 2 ////////////////////
+#   --- well definition -----
+#WELSPECS  
+#    WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+INJ       	 GRP1    RES1		I	OPEN
+END  
+#   --- well connections (trajestry) -------
+#COMPDAT  
+number_of_connections   1
+#LOC(ijk)       WI  
+299       966.302
+#20  	2000
+END  
+#   --- well control ----------------------
+#WCONPROD  
+#     CTRL    Q     BHP        std_den
+      #WRATE   2000  10000000.0     64.79  3 0.0 0.0 1.0
+     #GRATE 2000 1000000000.0   0.06054  3 1.0 0.0 0.0
+#BHP  	    8000 	  3 0.0 0.0 1.0
+TBHP 0   500.     8000    3 1.0 0.0 0.0
+TBHP 500  1000 	    8000 	  3 0.0 0.0 1.0
+
+END                                                                   
+END_WELL  
+  
+END_WELLS  
+#   --- Control Data --------------------------------
+#TUNING   
+#--   TSINIT TSMAXZ  TSMIN
+#0.005     10   0.005
+0.1 20 0.1
+#TSTEP  
+1000
+#   --- control parameters ------
+#   --- iteration control -----
+#   minNewtonIter	maxNewtonIter	fixedNewtonIter
+1  	10  12
+#   --- time step size control -------
+#   dp	ds	dx	w
+200      0.2	0.02    0.5
+#   --- convergence control ----
+#   relMBError	relPEError	relPChange absSChange absMFChange relWellEqError
+0.1  	0.02	0.0001	  0.005	  0.001 0.001
+#   --- solution method control ---
+#   variType	nImpVars  transImp  CFL
+1  	1
+
+3      4    1.0
+#   --- linear solver control ---
+#   LinearSolverChoice  Preconditioner  tol  maxIter reStartNo
+5  		     4            1E-4   6500		10
+#   --- debug information ---
+#Flag     NumOfTimeSteps
+1  	1
+  
+0 1 0

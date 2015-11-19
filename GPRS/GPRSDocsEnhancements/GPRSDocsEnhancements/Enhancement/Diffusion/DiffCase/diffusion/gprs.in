@@ -1,0 +1,17 @@
+# --- Field Data ----------------------------------
+Field_Name: Aquifer
+
+# --- Reservoirs Data ------------------------------
+NumOfReservoirs		1
+INCLUDE res_c1c7.in
+
+END_RESERVOIRS
+
+# --- Wells Data ----------------------------------
+NumOfWells          2
+INCLUDE wells_c1c7.in
+
+END_WELLS
+
+# --- Control Data --------------------------------
+INCLUDE control.in

@@ -1,0 +1,66 @@
+
+ Simulation Finished Successfully 
+
+
+ -------------------------- Performance Report -------------------------- 
+
+
+ ------------ Mass Balance Error Report ------------- 
+
+ OCIP     :	0.320972	0	0.0802431	4.01215e-021	4.01215e-021	
+
+ Residual :	0.00364969	1.3923e-074	0.150296	0.00131385	2.82385e-006	
+ Facilty  :	4.95507	0.0802442	57.8377	16.5237	0.239691	
+
+ MB_Error :	-4.63775	-0.0802442	-57.9078	-16.5251	-0.239694	
+ Rel_Error:	1444.91%	##	72165.4%	##	##	
+
+
+ ---- Total EoS counters ----
+ flash iters SSI    =       4500, flash iters Newton =          0
+ Stab. iters SSI    =      15517, Stab. iters Newton =      20025
+
+ No of Satb for Oil =    49, No of Satb for gas =  3533, No of flash =   959
+ time of Satb for Oil =     0, time of Satb for gas = 3.547, time for flash = 0.045
+
+ Variable Type : -----------------  Natural Variables
+ Number of Implicit levels: ------        1
+                    ImpVar --- TransImpLvl --- CFL_Limit --- Percent
+       Scheme 0 :     7             4             1           100%
+
+ Linear solver choice : ----------        5
+ Preconditioner choice : ---------        4
+ Linear solver Tolerance : -------   0.0001
+
+ Total running time: -------------       23 sec  ( 100 % )
+   -Initialization time: ---------        0 sec  (   0 % )
+   -Property Calc  time: ---------    4.141 sec  (  18 % )
+   -Linearization  time: ---------    0.563 sec  (   2 % )
+   -Newton Update  time: ---------        0 sec  (   0 % )
+   -Solver running time: ---------    3.734 sec  (  16 % )
+      --(B)ILU Pre fac time: -----    0.032 sec  (   0 % )
+      --(B)ILU Pre slv time: -----        0 sec  (   0 % )
+      --Pres dcpl time: ----------    0.064 sec  (   0 % )
+      --Pres slv time: -----------    2.794 sec  (  12 % )
+   -Timestep Calc  time: ---------        0 sec  (   0 % )
+   -CFL No.  Calc  time: ---------        0 sec  (   0 % )
+
+
+ Compositional simulation only:
+ Initialization time for reservoir: ---------        0 sec
+ Phase equilibrium running time: ------------    3.546 sec
+
+
+ No. of timesteps: ---------------      269
+
+ No. of Newton Iters : -----------      802
+ No. of Waste Newton Iters : -----       21
+
+ No. of Solver Iters : -----------      802
+ No. of Waste Solver Iters : -----       18
+
+ No. of Pres slvr iters : --------      802
+ No. of Waste Pres slvr iters: ---       18
+
+ Total elapsed = 23, steps = 269, Newton = 802, linear = 802
+

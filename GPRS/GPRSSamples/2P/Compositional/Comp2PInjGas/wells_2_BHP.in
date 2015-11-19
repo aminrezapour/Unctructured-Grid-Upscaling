@@ -1,0 +1,62 @@
+# ---------- Input of wells data -----------
+
+# //////// WELL No. 1 ////////////////////
+# --- well definition -----
+#WELSPECS
+#  WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+   PROD     	 GRP1    RES1		P	OPEN
+
+END
+# --- well connections (trajestry) -------
+#COMPDAT
+number_of_connections 1
+#LOC(i,j,k)     WI  
+ 0        	966.302
+
+END
+
+# --- well control ----------------------
+#WCONPROD
+#   CTRL    Q     BHP     std_den
+#    ORATE   500  100.0    46
+    BHP	    300  
+
+END                                                                 
+
+END_WELL
+
+
+
+# //////// WELL No. 2 ////////////////////
+# --- well definition -----
+#WELSPECS
+#  WELL_NAME     GROUP   RES_NAME	TYPE	STATUS	  
+   INJ     	 GRP1    RES1		I	OPEN
+
+END
+# --- well connections (trajestry) -------
+#COMPDAT
+number_of_connections 1
+#LOC(ijk)     WI  
+ 24      966.302
+#20	2000
+
+END
+
+# --- well control ----------------------
+#WCONPROD
+#   CTRL    Q     BHP        std_den
+#    ORATE   1000  1000.0     62.4
+    BHP	    600 	  4 1.0 0.0 0.0 0.0  
+
+END                                                                 
+
+END_WELL
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+
+ Simulation Finished Successfully 
+
+
+ -------------------------- Performance Report -------------------------- 
+
+
+ ------------ Mass Balance Error Report ------------- 
+
+ OCIP     :	8.35884e-013	8.35884e+007	
+
+ Residual :	1.67224e+007	4.44784e+007	
+ Facilty  :	2.6158e+006	3.911e+007	
+ Facilty  :	-1.93383e+007	0	
+
+ MB_Error :	53.1667	-24.5129	
+ Rel_Error:	##	0%	
+
+
+ Variable Type : -----------------  Natural Variables
+ Number of Implicit levels: ------        1
+                    ImpVar --- TransImpLvl --- CFL_Limit --- Percent
+       Scheme 0 :     2             4             1           100%
+
+ Linear solver choice : ----------        4
+ Preconditioner choice : ---------        4
+ Linear solver Tolerance : -------   0.0001
+
+ Total running time: -------------    1.813 sec  ( 100 % )
+   -Initialization time: ---------    0.219 sec  (  12 % )
+   -Property Calc  time: ---------    0.311 sec  (  17 % )
+   -Linearization  time: ---------    0.252 sec  (  14 % )
+   -Newton Update  time: ---------        0 sec  (   0 % )
+   -Solver running time: ---------    0.313 sec  (  17 % )
+      --(B)ILU Pre fac time: -----        0 sec  (   0 % )
+      --(B)ILU Pre slv time: -----        0 sec  (   0 % )
+      --Pres dcpl time: ----------    0.079 sec  (   4 % )
+      --Pres slv time: -----------    0.109 sec  (   6 % )
+   -Timestep Calc  time: ---------        0 sec  (   0 % )
+   -CFL No.  Calc  time: ---------        0 sec  (   0 % )
+
+
+ Compositional simulation only:
+ Initialization time for reservoir: ---------        0 sec
+ Phase equilibrium running time: ------------    0.032 sec
+
+
+ No. of timesteps: ---------------       51
+
+ No. of Newton Iters : -----------      193
+ No. of Waste Newton Iters : -----        0
+
+ No. of Solver Iters : -----------      601
+ No. of Waste Solver Iters : -----        0
+
+ No. of Pres slvr iters : --------      601
+ No. of Waste Pres slvr iters: ---        0
+
+ Total elapsed = 1.813, steps = 51, Newton = 193, linear = 601
+

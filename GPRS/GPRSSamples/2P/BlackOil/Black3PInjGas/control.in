@@ -1,0 +1,42 @@
+#TUNING 
+#-- TSINIT TSMAXZ  TSMIN
+1   60  1
+
+#TSTEP
+
+3650
+
+
+# --- control parameters ------
+# --- iteration control -----
+# minNewtonIter	maxNewtonIter	fixedNewtonIter
+1	12	30
+
+# --- time step size control -------
+# dp	ds	dx	w
+ 200    0.2	 0.02    0.5
+
+# --- convergence control ----
+# relMBError	relPEError	relPChange absSChange absMFChange relWellEqError
+0.1	0.02	0.0001	  0.005	  0.001 0.001
+
+# --- solution method control ---
+# variType	nImpTypes  Percentages(AIM)
+1	1   
+# variType	nImpVars  transImp  CFL    Percentage
+#1    	1	1
+#2    	2    	1.0       
+3	4	1.0      
+
+# --- linear solver control ---
+# LinearSolverChoice  Preconditioner  tol  maxIter reStartNo
+4		    3         1E-6   1500		10
+# --- debug information ---
+#Flag   NumOfTimeSteps
+0	10
+
+# --- Re-start file setting information ---
+#Flag   NumOfTimeSteps output-control
+0	  1		1
+
+END_CONTROL

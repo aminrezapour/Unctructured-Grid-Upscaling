@@ -1,0 +1,19 @@
+# --- Field Data ----------------------------------
+Field_Name: unknown
+
+# --- Reservoirs Data ------------------------------
+NumOfReservoirs		1
+#INCLUDE first_eql_res_thermal.in
+INCLUDE first_eql_res.in
+
+END_RESERVOIRS
+
+# --- Wells Data ----------------------------------
+NumOfWells          2
+INCLUDE first_eql_wells.in
+
+END_WELLS
+
+# --- Control Data --------------------------------
+INCLUDE first_eql_control.in
+

@@ -1,0 +1,37 @@
+NumOfWells  2
+#--------------------------------
+
+#WELSPECS
+P1_PROD  G  FIELD   P  OPEN
+END
+
+#COMPDAT
+number_of_connections 1
+9   9130
+END
+
+#WCONPROD
+BHP        2000.000
+END
+
+END_WELL
+#--------------------------------
+
+#WELSPECS
+I1_INJ  G  FIELD   I  OPEN
+END
+
+#COMPDAT
+number_of_connections 1
+0   9130
+END
+
+#WCONINJ
+#BHP  4000.000  2  0.0  1.0
+    WRATET  2000  100000.0  64.79  2 0 1  660
+END
+
+END_WELL
+#--------------------------------
+
+END_WELLS

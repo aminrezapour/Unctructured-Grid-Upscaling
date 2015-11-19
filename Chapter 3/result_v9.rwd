@@ -1,0 +1,7 @@
+*FILES 'model_v9.irf'
+*TABLE-FOR
+
+*COLUMN-FOR *PARAMETERS 'Bottom Hole Fluid Rate RC' *GROUPS 'Default-Field-INJ'
+*COLUMN-FOR *PARAMETERS 'Bottom Hole Fluid Rate RC' *GROUPS 'Default-Field-PRO'
+
+*TABLE-END

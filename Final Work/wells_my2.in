@@ -1,0 +1,12 @@
+
+END
+
+# --- well control ----------------------
+#WCONPROD
+#   CTRL    Q     BHP     std_den
+    BHP   2500    
+END                                                                 
+
+
+
+END_WELL

@@ -1,0 +1,280 @@
+-- All keywords and associated parameters can be checked from ECL Manual
+-- which can be found at S:\ecl\docs\E100_RM.PDF
+
+RUNSPEC   == specifications of simulation =============================
+TITLE     -- title of the run
+  BLK OIL INJECTION CASE
+
+DIMENS    -- dimensions of the model
+-- NX    NY   NZ
+   10  10    3 / --2D Model XY Section
+
+-- specify the phases present
+OIL       -- we run basically two phase black oil here
+
+GAS       -- water is present, but immobile
+DISGAS    -- with gas being dissolved in the oil
+WATER
+
+FIELD     -- unit specification
+
+START     -- starting date for simulation run
+  1 'JAN' 2007  /
+
+-- some other sizes and dimensions necessary for memory allocation:
+EQLDIMS   -- equilibration table size (not needed yet)
+    1  1000   10    1   20 /
+TABDIMS   -- size of saturation and pvt tables
+    1    1   40   40 /
+WELLDIMS  -- max numb of WELLS/CONN per WELL/GROUPS/WELLperGROUP
+    2    20    1    2 /
+NSTACK    -- usually 10
+   10 /
+
+
+GRID      == geometry of our model =====================================
+EQUALS    -- set top depth, block sizes and rock properties
+          -- valid for a given range of blocks: I1 I2   J1 J2   K1 K2   
+      'DX'    1000   /                        -- default box => all blocks
+      'DY'    1000  / 
+      'PORO'   0.264 / 
+      'DZ'     20 1 10 1 10 1 1/
+      'DZ'     30 1 10 1 10 2 2/
+      'DZ'     50 1 10 1 10 3 3/  -- thickness of the layers
+      'TOPS'   8325 1 10 1 10 1 1/  
+      'PERMX'  500 1 10 1 10 1 1/
+      'PERMX'  50 1 10 1 10 2 2/
+      'PERMX'  200 1 10 1 10 3 3/ 
+      'PERMY'  500 1 10 1 10 1 1/
+      'PERMY'  50 1 10 1 10 2 2/
+      'PERMY'  200 1 10 1 10 3 3/ 
+      'PERMZ'  50 1 10 1 10 1 1/
+      'PERMZ'  25 1 10 1 10 2 2/
+      'PERMZ'  25 1 10 1 10 3 3/ 
+/
+
+
+-- request init and grid file, necessary for post processing of the simulation
+-- with floviz
+INIT
+GRIDFILE
+ 2 /
+
+
+PROPS     == pvt and relperm tables =============================
+PVTO      -- pvt for live oil
+--  Rs(mscf/stb) Pressure   	Bo     		viscosity 
+0.001	 14.7	      1.062	1.04/
+0.0905 264.7	1.15	0.975/
+0.18	 514.7	1.207	0.91/
+0.371	 1014.7	1.295	0.83/
+0.636	 2014.7	1.435	0.695/
+0.775	 2514.7	1.5	0.641/
+0.93	 3014.7	1.565	0.594/
+1.27	 4014.7	1.695	0.51
+      9014.7	1.579	0.74/
+/
+
+-- Rs remains constant after Pbub = 4014.7 psi at the PVTO table 
+
+PVDG      -- pvt for dry gas (oil does not vaporize into gas phase)
+--      Pres.   Bg     viscosity   
+14.7	      166.666  0.0080
+264.7	      12.093   0.0096
+514.7	      6.274	   0.0112
+1014.7	3.197	   0.0140
+2014.7	1.614	   0.0189
+2514.7	1.294	   0.0208
+3014.7	1.08	   0.0228
+4014.7	0.811	   0.0268
+5014.7	0.649	   0.0309
+9014.7	0.386	   0.047
+/ 
+
+-- PVT PROPERTIES OF WATER
+--
+--    REF. PRES. REF. FVF  COMPRESSIBILITY  REF VISCOSITY  VISCOSIBILITY
+PVTW
+       4014.7     1.029        3.13D-6           0.31            0 /
+
+SGOF     -- Gas-oil Relative Permeabilities and Pcog
+--      Sgas    krg             kro             Pcog
+0  	0	0.8	0
+0.04  	0.005	0.65	0
+0.08  	0.013	0.513	0
+0.12  	0.026	0.4	0
+0.16  	0.04	0.315	0
+0.24  	0.078	0.196	0
+0.28  	0.1	0.15	0
+0.32  	0.126	0.112	0
+0.36  	0.156	0.082	0
+0.4  	0.187	0.06	0
+0.44  	0.222	0.04	0
+0.48  	0.26	0.024	0
+0.52  	0.3	0.012	0
+0.56  	0.349	0.005	0
+0.6  	0.4	0	0
+0.64  	0.45	0	0
+0.68  	0.505	0	0
+0.72  	0.562	0	0
+0.76  	0.62	0	0
+0.8  	0.68	0	0
+0.84  	0.74	0	0
+/
+
+SWOF
+0.16  	0	0.8	0
+0.2  	0.002	0.65	0
+0.24  	0.01	0.513	0
+0.28  	0.02	0.4	0
+0.32  	0.033	0.315	0
+0.4  	0.066	0.196	0
+0.44  	0.09	0.15	0
+0.48  	0.119	0.112	0
+0.52  	0.15	0.082	0
+0.56  	0.186	0.06	0
+0.6  	0.227	0.04	0
+0.64  	0.277	0.024	0
+0.68  	0.33	0.012	0
+0.72  	0.39	0.005	0
+0.76  	0.462	0	0
+0.8  	0.54	0	0
+0.84  	0.62	0	0
+0.88  	0.71	0	0
+0.92  	0.8	0	0
+0.96  	0.9	0	0
+1  	1	0	0
+/
+
+ROCK       -- reference Pressure and rock compressibility
+        14.7    3E-6  
+/
+
+
+
+DENSITY   -- oil wat gas @surface(lbm/scf)
+        49.1  64.79  0.06054 
+/
+
+SOLUTION   == initial state of solution variables =====================
+--EQUIL      -- DATA FOR INITIALISING FLUIDS TO POTENTIAL EQUILIBRIUM
+--   DATUM  DATUM   OWC    OWC    GOC    GOC    RSVD   RVVD   SOLN
+--    DEPTH  PRESS  DEPTH   PCOW  DEPTH   PCOG  TABLE  TABLE   METH
+--       8325  4800  9000    0    7800    0      1      0       0
+--/
+
+PRESSURE
+--100*4874.23 100*4880.74 100*4891.18/
+100*4020  100*4026.5 100*4036.71/
+
+SWAT
+300*0.16/
+
+SGAS
+300*0.0/
+
+
+RS
+--100*0.93 100*0.95 100*0.98/
+300*1.27/
+
+RPTSOL
+'RESTART=2' /
+
+SUMMARY    == output written to summary *.RSM file ====================
+RUNSUM     -- additional table in *.PRT file
+SEPARATE   -- write a seperate *.RSM file
+WOPR       -- 'W'ell 'O'il 'P'roduction 'R'ate
+ 'PROD'
+/
+WGPR       -- this is the Well GOR (GOR of well 'PROD')
+ 'PROD'
+/
+WGIR      -- 'W'ell 'G'as 'I'njection 'R'ate
+ 'INJ'
+/
+--WBHP       -- and the bottom hole pressure of 'PROD'
+-- 'INJ'
+--/
+
+WWIR
+'INJ'
+/
+
+--BPBUB
+--1 1 1/
+--10 10 3/
+--/
+--FPR        -- Average reservoir pressure
+--FOPT       -- Cumulative oil production of the field, ('F'ield 'O'il 'P'roduction 'T'otal)
+--FOE        -- request oil recovery
+
+BPR        -- request pressure output for specified blocks for each time step
+ 1 1 1 /
+-- 5 5 2/
+ 10 10 3/               
+/
+BGSAT      -- request gas saturation output for specified blocks 
+ 1 1 1/
+ --10 10  1 /  
+10 10 3/             
+/
+
+
+SCHEDULE   == operations to be simulated ==============================
+RPTSCHED   -- CONTROLS ON OUTPUT AT EACH REPORT TIME
+  'WELLS=2' 'WELSPECS'
+/
+
+DRSDT     -- Free gas is not allowed to re-dissolve within oil
+  10000   /
+
+RPTRST    -- request restart file
+'BASIC=2'
+/
+
+TUNING  -- min/max timestep (3 sections)
+0.1	20	/
+5*	0.1	/
+2* 60 /
+
+
+
+
+WELSPECS   == WELL SPECIFICATION DATA ================================
+--   WELL   GROUP LOCATION  BHP   PI
+--   NAME   NAME    I  J   DEPTH DEFN
+    'PROD' 'DUMMY'  1  1    -1 'OIL'  / -- see ECL Manual for details
+    'INJ'  'DUMMY'  10 10   -1 'GAS'  /
+/
+COMPDAT    -- COMPLETION SPECIFICATION DATA
+--   WELL  LOCATION          OPEN/ SAT CONN  WELL  KH  S  D  AXIS
+--   NAME    I   J  K1  K2   SHUT  TAB FACT  DIAM
+    'PROD'   1  1  1  1  'OPEN'  1*  1.0892   1* / --see ECL manual for details
+    'INJ'   10 10  3 3 'OPEN' 1*  1.0892   1* /
+/
+
+WPIMULT -- MULTIPLIER FOR WELL INDEX
+--  WELL NAME     MULTIPLIER
+   'PROD'          1/
+   'INJ'           1/
+/
+WCONPROD   -- PRODUCTION WELL CONTROLS
+--   WELL    OPEN/  CTRL     OIL  WATER   GAS  LIQU   RES   BHP
+--   NAME    SHUT   MODE    RATE   RATE  RATE  RATE  RATE
+    'PROD'  'OPEN' 'BHP'  20000 4*                    1000  / --see ECL manual for details
+/
+WCONINJE
+ 'INJ'  'GAS' 'OPEN'  'BHP' 2* 8000/
+/
+TSTEP
+500/
+
+WCONINJE
+ 'INJ'  'WATER' 'OPEN'  'BHP' 2* 8000/
+/
+TSTEP
+500/
+
+
+END        

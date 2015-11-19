@@ -1,0 +1,60 @@
+
+ Simulation Finished Successfully 
+
+
+ -------------------------- Performance Report -------------------------- 
+
+
+ ------------ Mass Balance Error Report ------------- 
+
+ OCIP     :	8.27248e+006	0	
+
+ Residual :	4.03541e+006	5.45041e+006	
+ Facilty  :	0	-5.50094e+006	
+ Facilty  :	4.23709e+006	50510	
+
+ MB_Error :	-21.3724	26.4186	
+ Rel_Error:	0.000258355%	##	
+
+
+ Variable Type : -----------------  Natural Variables
+ Number of Implicit levels: ------        1
+                    ImpVar --- TransImpLvl --- CFL_Limit --- Percent
+       Scheme 0 :     2             4             1           100%
+
+ Linear solver choice : ----------        4
+ Preconditioner choice : ---------        4
+ Linear solver Tolerance : -------   0.0001
+
+ Total running time: -------------       89 sec  ( 100 % )
+   -Initialization time: ---------        0 sec  (   0 % )
+   -Property Calc  time: ---------     1.88 sec  (   2 % )
+   -Linearization  time: ---------    2.339 sec  (   3 % )
+   -Newton Update  time: ---------    0.124 sec  (   0 % )
+   -Solver running time: ---------   13.829 sec  (  16 % )
+      --(B)ILU Pre fac time: -----     2.79 sec  (   3 % )
+      --(B)ILU Pre slv time: -----    0.672 sec  (   1 % )
+      --Pres dcpl time: ----------    1.193 sec  (   1 % )
+      --Pres slv time: -----------    4.388 sec  (   5 % )
+   -Timestep Calc  time: ---------    0.013 sec  (   0 % )
+   -CFL No.  Calc  time: ---------        0 sec  (   0 % )
+
+
+ Compositional simulation only:
+ Initialization time for reservoir: ---------        0 sec
+ Phase equilibrium running time: ------------        0 sec
+
+
+ No. of timesteps: ---------------      159
+
+ No. of Newton Iters : -----------      376
+ No. of Waste Newton Iters : -----        0
+
+ No. of Solver Iters : -----------     1333
+ No. of Waste Solver Iters : -----        0
+
+ No. of Pres slvr iters : --------     1333
+ No. of Waste Pres slvr iters: ---        0
+
+ Total elapsed = 89, steps = 159, Newton = 376, linear = 1333
+

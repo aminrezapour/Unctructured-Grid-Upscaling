@@ -1,0 +1,59 @@
+FLUID_DATA  ######################################### 
+FLUID_TYPE COMPOSITIONAL
+
+NPHASES		2
+NCOMPONENTS		2
+
+# Phase data -------------
+#PHASE_NAMES 
+GAS  OIL
+
+
+# --- component data -------------
+#COMP_NAMES
+CO2 	H2O
+
+# --- Z(initial total mole fraction) for each component ---
+length_of_table 2
+1   	6.395e-5	1		
+10000	6.395e-5	1	
+
+# --- Molecular Weight for each component ---
+# --- can be found at www.ch.cam.ac.uk/magnus/MolWeight.html --- 
+44.01		18.015
+
+# --- Pc(Psia) for each component ---
+1071.33111 	3200.0
+
+# --- Tc(R) for each component ---
+547.4308 	1164.77 
+
+#--- Vc (ft3/lb-mole) for each component -----
+1.5058  	0.8976
+
+# --- W for each component ---
+0.22394     0.344
+
+# --- Volume Shift Parameter (Dimensionless S) ----
+0.024668	0.12
+
+#--- K[ij] for each pair component ----------
+# Peng-Rubinson
+0	-0.09
+-0.09	0
+
+#Flash method: SSI or NEWTON
+#SSI
+#      stabSwitchEps	flashSwitchEps
+NEWTON 1.0e-1 		1.0e-1	
+
+INCLUDE CCS_aqu.in
+
+END
+
+PHASE_COMP_RELATION_DATA ##########################
+# --- component phase relation (nPhases by nComps) ---
+#comp:      CO2   H2O	
+		1	1	0 0 0 0 0  0 0 0 0 0  0
+		1	1	1 1 1 1 1  1 1 1 1 1  1
+END

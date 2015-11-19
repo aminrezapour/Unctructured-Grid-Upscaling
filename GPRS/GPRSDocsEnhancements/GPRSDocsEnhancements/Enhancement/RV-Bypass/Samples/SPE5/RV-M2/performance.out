@@ -1,0 +1,79 @@
+
+ Simulation Finished Successfully 
+
+
+ -------------------------- Performance Report -------------------------- 
+
+
+ ------------ Mass Balance Error Report ------------- 
+
+ OCIP     :	1.06977e+009	6.41863e+007	1.49768e+008	4.27909e+008	3.20932e+008	1.06977e+008	4.79775e+009	
+
+ Residual :	1.14586e+009	6.79921e+007	1.46627e+008	4.12519e+008	3.09343e+008	1.03114e+008	4.79773e+009	
+ Facilty  :	-1.14631e+008	-6.12238e+006	-2.26607e+006	-62036.6	-230.163	0	0	
+ Facilty  :	3.85469e+007	2.31657e+006	5.40767e+006	1.54519e+007	1.15891e+007	3.86305e+006	19745.1	
+
+ MB_Error :	-100.076	-3.55082	0.809928	6.14933	5.44676	1.95153	-0.105713	
+ Rel_Error:	9.35485e-006%	5.53205e-006%	5.40788e-007%	1.43706e-006%	1.69717e-006%	1.82425e-006%	2.2034e-009%	
+
+
+ ---- Total EoS counters ----
+ flash iters SSI    =       5203, flash iters Newton =       1018
+ Stab. iters SSI    =    2549188, Stab. iters Newton =    2074279
+
+ No of Satb for Oil = 670272, No of Satb for gas = 241399, No of flash =   738
+ time of Satb for Oil = 15.994, time of Satb for gas = 5.756, time for flash = 0.062
+
+RV flahsh results:
+ NSSI =       1863, NNewton =       2571
+ Flash time =      0.046
+
+
+
+Statistics of bypass stability analysis:
+Total No:				 671156
+Bypass No:				 0
+Failed Pressure No:	 0
+Failed Composition  No: 0
+
+ Variable Type : -----------------  Natural Variables
+ Number of Implicit levels: ------        1
+                    ImpVar --- TransImpLvl --- CFL_Limit --- Percent
+       Scheme 0 :     7             4             1           100%
+
+ Linear solver choice : ----------        5
+ Preconditioner choice : ---------        4
+ Linear solver Tolerance : -------     0.01
+
+ Total running time: -------------       54 sec  ( 100 % )
+   -Initialization time: ---------        1 sec  (   2 % )
+   -Property Calc  time: ---------   24.246 sec  (  45 % )
+   -Linearization  time: ---------    9.482 sec  (  18 % )
+   -Newton Update  time: ---------    0.062 sec  (   0 % )
+   -Solver running time: ---------   12.843 sec  (  24 % )
+      --(B)ILU Pre fac time: -----    3.231 sec  (   6 % )
+      --(B)ILU Pre slv time: -----    1.734 sec  (   3 % )
+      --Pres dcpl time: ----------    1.546 sec  (   3 % )
+      --Pres slv time: -----------    0.501 sec  (   1 % )
+   -Timestep Calc  time: ---------        0 sec  (   0 % )
+   -CFL No.  Calc  time: ---------        0 sec  (   0 % )
+
+
+ Compositional simulation only:
+ Initialization time for reservoir: ---------    0.235 sec
+ Phase equilibrium running time: ------------   21.781 sec
+
+
+ No. of timesteps: ---------------       47
+
+ No. of Newton Iters : -----------      200
+ No. of Waste Newton Iters : -----        0
+
+ No. of Solver Iters : -----------      515
+ No. of Waste Solver Iters : -----        0
+
+ No. of Pres slvr iters : --------      515
+ No. of Waste Pres slvr iters: ---        0
+
+ Total elapsed = 54, steps = 47, Newton = 200, linear = 515
+

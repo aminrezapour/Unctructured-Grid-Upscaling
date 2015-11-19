@@ -1,0 +1,102 @@
+RESERVOIR_NAME   RES1
+
+GRID_DATA  #########################################
+GRIDSIZE   900 1 1
+DX
+  100
+DY
+  100
+DZ
+  20
+PERMX
+  1
+PERMY
+  1
+PERMZ
+  1
+PORO
+	0.25
+DEPTH     
+	4708
+VOLUME
+	INCLUDE  volume.in
+CONNECTION
+	INCLUDE conn.in
+
+TEMP
+	530
+
+END
+
+FLUID_DATA  ######################################### 
+FLUID_TYPE BLACK_OIL
+NPHASES      2
+NCOMPONENTS 2
+
+# Phase data -------------
+
+PHASE_NAME OIL 
+STANDARD_DENS 49.92
+NUM_OF_TABLE_ENTRIES 8
+#      P        BO        VISC     RGO        
+#     PSI      RB/STB      CP     SCF/STB  
+14.7	1.199265	1.2	0	
+1014.7	1.149265	1.2	0	
+2014.7	1.099265	1.2	0	
+3014.7	1.049265	1.2	0	
+4014.7	0.999265	1.2	0	
+5014.7	0.949265	1.2	0	
+6014.7	0.899265	1.2	0	
+7014.7	0.849265	1.2	0	
+
+PHASE_NAME WATER 
+STANDARD_DENS 62.4
+NUM_OF_TABLE_ENTRIES 5
+#      P        BW        VISC		RGW
+#     PSI     RB/BBL       CP		SCF/STB
+	14.7	   1.02	   0.55	0
+	4014.7	1.00985		0.55001	0
+	5014.7	1.00733		0.550013	0
+	6014.7	1.00481		0.550015	0
+	7014.7	1.0023		0.550018	0
+
+# --- component data -------------
+
+END
+
+PHASE_COMP_RELATION_DATA ##########################
+# --- component phase relation (nPhases by nComps) ---
+#phase:		oil		water
+		1		0		#oil component
+		0		1		#water component
+
+END
+
+ROCKFLUID_DATA #####################################
+
+
+#WATEROILPERM 
+OW
+NUM_OF_TABLE_ENTRIES 3
+#TABLE      Sw       KRw      KROw     PCow
+	0.0      0.0       1.0		0	
+      0.50     0.075     0.230	0
+      1.0      1.0       0.000	0
+
+END
+
+ROCK_DATA ##########################################
+#		COMP.    REF. PRES
+		3.1E-6     14.7
+
+END
+
+EQUILIBRIUM_DATA ##########################################
+#   	Swi		Sor		Sgr
+	0.0		0.00		0.0
+
+#	pres	@depth	WOC		GOC
+	4000	 4675.2		4757.2   3100
+END
+
+END_RESERVOIR

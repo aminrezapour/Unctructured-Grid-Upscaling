@@ -1,0 +1,636 @@
+
+
+
+ $$$$$   $$$   $      $$$  $$$$    $$$   $$$$$     $    $$$    $$$ 
+ $      $   $  $       $   $   $  $   $  $        $$   $   $  $   $
+ $      $      $       $   $   $  $      $         $   $   $  $   $
+ $$$$   $      $       $   $$$$    $$$   $$$$      $   $   $  $   $
+ $      $      $       $   $          $  $         $   $   $  $   $
+ $      $   $  $       $   $      $   $  $         $   $   $  $   $
+ $$$$$   $$$   $$$$$  $$$  $       $$$   $$$$$    $$$   $$$    $$$ 
+
+
+
+                       $$$$$   $$$   $      $$$  $$$$    $$$   $$$$$     $    $$$    $$$ 
+                       $      $   $  $       $   $   $  $   $  $        $$   $   $  $   $
+                       $      $      $       $   $   $  $      $         $   $   $  $   $
+                       $$$$   $      $       $   $$$$    $$$   $$$$      $   $   $  $   $
+                       $      $      $       $   $          $  $         $   $   $  $   $
+                       $      $   $  $       $   $      $   $  $         $   $   $  $   $
+                       $$$$$   $$$   $$$$$  $$$  $       $$$   $$$$$    $$$   $$$    $$$ 
+
+
+
+                                             $$$$$   $$$   $      $$$  $$$$    $$$   $$$$$     $    $$$    $$$ 
+                                             $      $   $  $       $   $   $  $   $  $        $$   $   $  $   $
+                                             $      $      $       $   $   $  $      $         $   $   $  $   $
+                                             $$$$   $      $       $   $$$$    $$$   $$$$      $   $   $  $   $
+                                             $      $      $       $   $          $  $         $   $   $  $   $
+                                             $      $   $  $       $   $      $   $  $         $   $   $  $   $
+                                             $$$$$   $$$   $$$$$  $$$  $       $$$   $$$$$    $$$   $$$    $$$ 
+
+
+
+                                                                   $$$$$   $$$   $      $$$  $$$$    $$$   $$$$$     $    $$$    $$$ 
+                                                                   $      $   $  $       $   $   $  $   $  $        $$   $   $  $   $
+                                                                   $      $      $       $   $   $  $      $         $   $   $  $   $
+                                                                   $$$$   $      $       $   $$$$    $$$   $$$$      $   $   $  $   $
+                                                                   $      $      $       $   $          $  $         $   $   $  $   $
+                                                                   $      $   $  $       $   $      $   $  $         $   $   $  $   $
+                                                                   $$$$$   $$$   $$$$$  $$$  $       $$$   $$$$$    $$$   $$$    $$$ 
+ 
+ Version =  2004a
+Annex    | Modification date    | Update date          | baseline             
+=====    | =================    | ===========          | ========             
+ECLIPSE  | 30-MAR-2004 17:13:38 | 02-APR-2004 20:28:02 | S:\2004a_w15
+system   | 10-MAR-2004 13:04:33 | 02-APR-2004 20:28:48 | S:\2004a_w15
+utility  | 26-MAR-2004 14:54:56 | 02-APR-2004 20:28:47 | S:\2004a_w15
+ 
+
+1
+
+ ******** ECHO OF INPUT DATA FOR RUN ow
+
+ 0: -- All keywords and associated parameters can be checked from ECL Manual
+ 0: -- which can be found at S:\ecl\docs\E100_RM.PDF
+ 0: 
+ 0: RUNSPEC   == specifications of simulation =============================
+ 0: TITLE     -- title of the run
+ 0:   GPRS TEST EXAMPLE PHASE 2: 3D OIL-WATER SYSTEM
+ 0: 
+ 0: DIMENS    -- dimensions of the model
+ 0: -- NX    NY   NZ
+ 0:    10   10    3 /
+ 0: 
+ 0: -- specify the phases present
+ 0: OIL       -- we run basically two phase black oil here
+ 0: WATER
+ 0: 
+ 0: FIELD     -- unit specification
+ 0: 
+ 0: START     -- starting date for simulation run
+ 0:   1 'JAN' 2000  /
+ 0: 
+ 0: -- some other sizes and dimensions necessary for memory allocation:
+ 0: EQLDIMS   -- equilibration table size
+ 0:     1  1000   10    1   20 /
+ 0: 
+ 0: 
+ 0: --TRACERS		--tracer option
+ 0: --0 1 0 0 DIFF 12 /
+ 0: 
+ 0: TABDIMS   -- size of saturation and pvt tables
+ 0:     1    1   40   40 /
+ 0: WELLDIMS  -- max numb of WELLS/CONN per WELL/GROUPS/WELLperGROUP
+ 0:     3    20    1    3 /			
+ 0: NSTACK
+ 0:    24 /
+ 0: 
+ 0: 
+ 0: GRID      == geometry of our model =====================================
+ 0: EQUALS    -- set top depth, block sizes and rock properties
+ 0:           -- valid for a given range of blocks: I1 I2   J1 J2   K1 K2
+ 0:       'DX'    300   /                        -- default box => all blocks
+ 0:       'PERMX' 500   /		
+ 0:       'DY'    300   /
+ 0:       'PORO'   0.25 /
+ 0:       'DZ'      5  / -- thickness of the layers
+ 0:       'TOPS'  8325      1   10  1   10   1   1 /  -- first layer
+ 0:       /
+ 0: 
+ 0: --INCLUDE
+ 0: --	'.\K_map.inc'	/	--heterogenious in K
+ 0: 
+ 0: COPY
+ 0:   PERMX PERMY/
+ 0:   PERMX PERMZ/
+ 0: /
+ 0: 
+ 0: MULTIPLY
+ 0: 	PERMZ 0.4/
+ 0: /
+ 0: 
+ 0: -- request init and grid file, necessary for post processing of the simulation
+ 0: -- with floviz
+ 0: INIT
+ 0: GRIDFILE
+ 0:  2 /
+ 0: 
+ 0: 
+ 0: PROPS     == pvt and relperm tables =============================
+ 0: 
+ 0: --TRACTVD
+ 0: 
+ 0: PVDO      -- pvt for live oil
+ 0: -- Pressure   	Bo	viscosity
+ 0: 
+ 0:      14.7      1.03        1.2
+ 0:      1014.7    1.0106      1.2
+ 0:      2014.7    0.9916      1.2	
+ 0:      3014.7    0.9729      1.200166
+ 0:      4014.7    0.9546      1.200222	
+ 0:      5014.7    0.9367      1.200277	
+ 0:      6014.7  	0.9190     1.200333
+ 0:      7014.7    0.9017	   1.200388 	
+ 0: /
+ 0: 
+ 0: -- Rs remains constant after Pbub = 3824.32 psi at the PVTO table
+ 0: 
+ 0: PVTW
+ 0:     4014.7    1.0290  3.0E-06    0.31	0	/	
+ 0: --     14.7    1.0410   2.68972E-06    0.31	0
+ 0: --     264.7    1.0403  2.7804E-06    0.31	0
+ 0: --     514.7    1.0395  2.886E-06      0.31	0
+ 0: --    1014.7    1.0380  2.89017E-06    0.31	0
+ 0: --    2014.7    1.0350  2.89855E-06    0.31	0
+ 0: --    2514.7    1.0335  2.90276E-06    0.31	0
+ 0: --    3014.7    1.0320  2.90698E-06    0.31	0
+ 0: --    4014.7    1.0290  3.10982E-06    0.31	0
+ 0: --    9014.7    1.0130  3.10982E-06    0.31	0/
+ 0: 
+ 0: 
+ 0: SWOF     -- oil-water Relative Permeabilities and Pcog
+ 0: --TABLE      Sw       KRw      KROw     PCow
+ 0: --	0.0      0.0       1.0		0	
+ 0: --     	0.1      0.0       0.960	0
+ 0: 	0.15	 0.0       0.915	0
+ 0: 	0.2      0.0       0.875	0
+ 0:       	0.25     0.0       0.800	0
+ 0:       	0.30     0.010     0.700	0
+ 0:       	0.35     0.025     0.565	0
+ 0:       	0.40     0.040     0.430	0
+ 0:       	0.50     0.075     0.230	0
+ 0:       	0.60     0.125     0.100	0
+ 0:       	0.70     0.2       0.025	0
+ 0:       	0.80     0.3       0.000	0
+ 0:       	0.90     0.575     0.000	0
+ 0:       	1.0      1.0       0.000	0/
+ 0: 
+ 0: ROCK       -- reference Pressure and rock compressibility
+ 0:         14.7    3E-6
+ 0: /
+ 0: 
+ 0: DENSITY   -- oil wat gas @surface(lbm/scf)
+ 0:         49.1  64.79
+ 0: /
+ 0: 
+ 0: -----------------tracer----------
+ 0: --TRACER
+ 0: --'IW1' 'WAT' /
+ 0: --/
+ 0: 
+ 0: ------!!! notice the oil-water contact face, and
+ 0: SOLUTION   == initial state of solution variables =====================
+ 0: EQUIL      -- DATA FOR INITIALISING FLUIDS TO POTENTIAL EQUILIBRIUM
+ 0: --    DATUM  DATUM   OWC    OWC    GOC    GOC    RSVD   RVVD   SOLN
+ 0: --    DEPTH  PRESS  DEPTH   PCOW  DEPTH   PCOG  TABLE  TABLE   METH
+ 0:        8400  4800   9425    0     8200    0      0      0       0
+ 0: /
+ 0: 
+ 0: 
+ 0: RPTSOL
+ 0: 'RESTART=2' /
+ 0: 
+ 0: 
+ 0: SUMMARY    == output written to summary *.RSM file ====================
+ 0: RUNSUM     -- additional table in *.PRT file
+ 0: SEPARATE   -- write a seperate *.RSM file
+ 0: 
+ 0: WOPR       -- 'W'ell 'O'il 'P'roduction 'R'ate
+ 0:  'PROD1'
+ 0: /
+ 0: WWPR       -- this is the Well GOR (GOR of well 'PROD')
+ 0:  'PROD1'
+ 0: /
+ 0: 
+ 0: WBHP       -- and the bottom hole pressure of 'PROD'
+ 0:  'PROD1'
+ 0: /
+ 0: 
+ 0: 
+ 0: SCHEDULE   == operations to be simulated ==============================
+ 0: RPTSCHED   -- CONTROLS ON OUTPUT AT EACH REPORT TIME
+ 0:   'WELLS=2' 'WELSPECS'
+ 0: /
+ 0: 
+ 0: --DRSDT     -- Free gas is not allowed to re-dissolve within oil
+ 0: --  0 /
+ 0: 
+ 0: RPTRST    -- request restart file
+ 0: 
+ 0: TUNING  -- min/max timestep (3 sections)
+ 0: 0.1	50	/
+ 0: 5*	0.1	/
+ 0: 2* 100 		/
+ 0: 
+ 0: 
+ 0: 
+ 0: -------Well No.1-------
+ 0: --set BHP reference depth to -1, then Eclispe will set it as default, which is better.
+ 0: WELSPECS   == WELL SPECIFICATION DATA ================================
+ 0: --   WELL   GROUP LOCATION  BHP   PI
+ 0: --   NAME   NAME    I  J   DEPTH DEFN
+ 0: --  'PROD1' 'DUMMY'  10 10  8425 'OIL'   2* 'STOP' 	/ -- see ECL Manual for details
+ 0:     'PROD1' 'DUMMY'  10 10  -1 'OIL'   			/ -- see ECL Manual for details
+ 0: /
+ 0: 
+ 0: COMPDAT    -- COMPLETION SPECIFICATION DATA
+ 0: --   WELL  LOCATION          OPEN/ SAT CONN  WELL  KH  S  D  AXIS
+ 0: --   NAME    I    J  K1  K2   SHUT  TAB FACT  DIAM
+ 0:      PROD1    10  10  1   3   OPEN  0   3.236/
+ 0: /
+ 0: 
+ 0: 
+ 0: -------Well No.2-------
+ 0: WELSPECS   == WELL SPECIFICATION DATA ================================
+ 0: --   WELL   GROUP  LOCATION  BHP   PI
+ 0: --   NAME   NAME    I  J    DEPTH DEFN
+ 0: --  'INJ1' 'DUMMY'  1  1    8425 'WATER'   2* 'STOP' 	/ -- see ECL Manual for details
+ 0:     'INJ1' 'DUMMY'  1  1    -1   'WATER'   	 	/ -- see ECL Manual for details
+ 0: /
+ 0: 
+ 0: COMPDAT    -- COMPLETION SPECIFICATION DATA
+ 0: --   WELL  LOCATION          OPEN/ SAT CONN  WELL  KH  S  D  AXIS
+ 0: --   NAME    I    J  K1  K2   SHUT  TAB FACT  DIAM
+ 0:      INJ1     1    1  1   3   OPEN  0   3.236/
+ 0: /
+ 0: 
+ 0: 
+ 0: --------------------------------------------------------------------------------------------------------
+ 0: WCONPROD   -- PRODUCTION WELL CONTROLS
+ 0: --   WELL    OPEN/  CTRL     OIL  WATER   GAS  LIQU   RES   BHP
+ 0: --   NAME    SHUT   MODE    RATE  RATE    RATE  RATE  RATE
+ 0:     'PROD1'  'OPEN' 'LRAT'   3*                 6000  1*   1000  / --see ECL manual for details
+ 0: --      'PROD1'  'OPEN' 'BHP'    5*                      	    4000    / --BHP control
+ 0: /
+ 0: 
+ 0: WCONINJE   -- INJECTION WELL CONTROLS
+ 0: --   WELL    Inject  Well     CTRL   SurRate  ResRate  BHP       THP      .......
+ 0: --   NAME    Type    Status   MODE   Target   Target   Target    Target   .......
+ 0:      'INJ1'  'WATER' 'OPEN'   'RATE' 6000     1*       100000    / --water rate control
+ 0: --     'INJ1'  'WATER' 'OPEN'   'BHP'  2*                6000    / --BHP control
+ 0: /
+ 0: 
+ 0: 
+ 0: -- timesteps can be refined by entering multiple TSTEP keywords
+ 0: TSTEP
+ 0: --   20*3650.
+ 0: 1000
+ 0: /
+ 0: 
+ 0: END
+
+ ******** END OF INPUT DATA FOR RUN ow
+     1 READING RUNSPEC 
+     2 READING TITLE   
+     3 READING DIMENS  
+     4 READING OIL     
+     5 READING WATER   
+     6 READING FIELD   
+     7 READING START   
+     8 READING EQLDIMS 
+     9 READING TABDIMS 
+    10 READING WELLDIMS
+    11 READING NSTACK  
+    12 READING GRID    
+    13 READING EQUALS  
+    14 READING COPY    
+    15 READING MULTIPLY
+    16 READING INIT    
+    17 READING GRIDFILE
+    18 READING PROPS   
+
+ @--MESSAGE  AT TIME        0.0   DAYS    ( 1-JAN-2000):
+ @           UNSPECIFIED TOPS VALUES OBTAINED BY ADDING DZ                   
+ @           TO TOPS VALUE FOR LAYER ABOVE                                   
+
+ @--MESSAGE  AT TIME        0.0   DAYS    ( 1-JAN-2000):
+ @           NEITHER OLDTRAN,OLDTRANR NOR NEWTRAN SPECIFIED                  
+ @           BLOCK CENTRE TRANSMISSIBILITIES TO BE CALCULATED                
+ @           USING  OLDTRAN                                                  
+
+ @--COMMENT  AT TIME        0.0   DAYS    ( 1-JAN-2000):
+ @           NO NON-NEIGHBOUR CONNECTIONS FOUND                              
+
+ @--MESSAGE  AT TIME        0.0   DAYS    ( 1-JAN-2000):
+ @           NUMBER OF ACTIVE CELLS IS     300                               
+
+ @--MESSAGE  AT TIME        0.0   DAYS    ( 1-JAN-2000):
+ @           PROBLEM REQUIRES      0.620 MEGABYTES                           
+ @               2168 ( BYTES PER ACTIVE CELL )                              
+
+ @--MESSAGE  AT TIME        0.0   DAYS    ( 1-JAN-2000):
+ @             48454 CHARACTER VARIABLES USED                                
+    19 READING PVDO    
+    20 READING PVTW    
+    21 READING SWOF    
+    22 READING ROCK    
+    23 READING DENSITY 
+    24 READING SOLUTION
+    25 READING EQUIL   
+    26 READING RPTSOL  
+    27 READING SUMMARY 
+    28 READING RUNSUM  
+    29 READING SEPARATE
+    30 READING WOPR    
+    31 READING WWPR    
+    32 READING WBHP    
+    33 READING SCHEDULE
+    34 READING RPTSCHED
+    35 READING RPTRST  
+    36 READING TUNING  
+    37 READING WELSPECS
+    38 READING COMPDAT 
+    39 READING WELSPECS
+    40 READING COMPDAT 
+    41 READING WCONPROD
+    42 READING WCONINJE
+    43 READING TSTEP   
+1                             **********************************************************************   1
+  WELSPECS AT     0.00   DAYS *  GPRS TEST EXAMPLE PHASE 2: 3D OIL-WATER SYSTEM                        * ECLIPSE  VERSION 2004a      
+  REPORT   0     1 JAN 2000   *WIN32 RUN                                                               * RUN AT 17:40 ON 06 MAR 2007 
+                              **************************************************************************
+
+
+                                                       WELL SPECIFICATION DATA
+                                                       -----------------------
+
+      -------------------------------------------------------------------------------------------------------------------------
+      :   WELL   :   GROUP  : WELLHEAD :  B.H.REF : PREF- : DRAINAGE : GAS  : SHUT-IN : CROSS : PVT : WELL : FIP :    WELL    :
+      :   NAME   :   NAME   : LOCATION :   DEPTH  : ERRED :  RADIUS  : INFL : INSTRCT : FLOW  : TAB : DENS : REG :  D-FACTOR  :
+      :          :          : ( I, J ) :   FEET   : PHASE :   FEET   : EQUN :         : ABLTY :     : CALC :     :  DAY/MSCF  :
+      -------------------------------------------------------------------------------------------------------------------------
+      : PROD1    : DUMMY    :  10,  10 :   8327.5 :  OIL  : P.EQIV.R : STD  :   SHUT  :  YES  :  1  :  SEG :  0  :          0 :
+      : INJ1     : DUMMY    :   1,   1 :   8327.5 :  WAT  : P.EQIV.R : STD  :   SHUT  :  YES  :  1  :  SEG :  0  :          0 :
+      -------------------------------------------------------------------------------------------------------------------------
+
+
+                                                         WELL CONNECTION DATA
+                                                         --------------------
+
+  ----------------------------------------------------------------------------------------------------------------------------------
+  :  WELL   :    GRID    : CMPL:  CENTRE : OPEN: SAT :CONNECTION:  INT   :  K  H   :  SKIN  : CONNECTION : SATURATION SCALING DATA :
+  :  NAME   :    BLOCK   :  NO :  DEPTH  : SHUT: TAB :  FACTOR  :  DIAM  :  VALUE  : FACTOR :  D-FACTOR  : SWMIN SWMAX SGMIN SGMAX :
+  :         :            :     :   FEET  :     :     : CPB/D/PS :  FEET  :  MD-FEET:        :  DAY/MSCF  :                         :
+  ----------------------------------------------------------------------------------------------------------------------------------
+  : PROD1   :  10, 10,  1:   1 :   8327.5: OPEN:  0  :     3.236:       0:   2500.0:       0:           0:                         : 
+  : PROD1   :  10, 10,  2:   2 :   8332.5: OPEN:  0  :     3.236:       0:   2500.0:       0:           0:                         : 
+  : PROD1   :  10, 10,  3:   3 :   8337.5: OPEN:  0  :     3.236:       0:   2500.0:       0:           0:                         : 
+  ----------------------------------------------------------------------------------------------------------------------------------
+  : INJ1    :   1,  1,  1:   1 :   8327.5: OPEN:  0  :     3.236:       0:   2500.0:       0:           0:                         : 
+  : INJ1    :   1,  1,  2:   2 :   8332.5: OPEN:  0  :     3.236:       0:   2500.0:       0:           0:                         : 
+  : INJ1    :   1,  1,  3:   3 :   8337.5: OPEN:  0  :     3.236:       0:   2500.0:       0:           0:                         : 
+  ----------------------------------------------------------------------------------------------------------------------------------
+
+
+                                                     PRODUCTION WELL CONTROL DATA
+                                                     ----------------------------
+
+               -------------------------------------------------------------------------------------------------------
+               :  WELL  :OPEN:CTRL:                        TARGET OR LIMITING                         :PRD:ARTIFICIAL:
+               :  NAME  :SHUT:MODE: OIL RATE: WAT RATE: GAS RATE: LIQ RATE: RES V RT: B.H.P. : T.H.P. :VFP:   LIFT   :
+               :        :    :    :  STB/DAY:  STB/DAY: MSCF/DAY:  STB/DAY:  RB/DAY :  PSIA  :  PSIA  :TAB:          :
+               -------------------------------------------------------------------------------------------------------
+               :PROD1   :OPEN:LRAT:         :         :         :     6000:         :  1000.0:        :   :          :
+               -------------------------------------------------------------------------------------------------------
+
+
+                                                  GROUP PRODUCTION CONTROL OF WELLS
+                                                  ---------------------------------
+
+                ----------------------------------------------------------------------------------------------------
+                :   WELL   :AVAIL:  CONTROL BY GUIDE RATE ::     WELL PRIORITY ONE     :     WELL PRIORITY TWO     :
+                :   NAME   :-ABLE:  GUIDE RATE  :G.R.MULT-::FROM: FIXED VALUE: PRIORITY:FROM: FIXED VALUE: PRIORITY:
+                :          :  ?  :              : IPLIER  ::EQUN:            : MULITPLY:EQUN:            : MULTIPLY:
+                ----------------------------------------------------------------------------------------------------
+                : PROD1    : YES :              :         ::    :            :         :    :            :         :                                
+                ----------------------------------------------------------------------------------------------------
+
+
+                                                     INJECTION WELL CONTROL DATA
+                                                     ---------------------------
+
+ -----------------------------------------------------------------------------------------------------------------------------------
+ :   WELL   : WELL : OPEN : CTRL :           TARGET  OR  MAXIMUM           : INJ :  INJECTED   :    GROUP CONTROL    :MINIMUM : MIN:
+ :   NAME   : TYPE : SHUT : MODE : SURF RATE: RESV RATE:  B.H.P. :  T.H.P. : VFP : GOR OR OGR  : AVAIL:  GUIDE RATE  :ECONOMIC:RATE:
+ :          :      :      :      :  STB/DAY :  RB/DAY  :   PSIA  :   PSIA  : TAB : GOR-MSCF/STB: -ABLE:              :  RATE  : IS :
+ :          :      :      :      : MSCF/DAY :          :         :         :     : OGR-STB/MSCF:      :              :        :    :
+ -----------------------------------------------------------------------------------------------------------------------------------
+ : INJ1     :  WAT : OPEN : WRAT :     6000 :          :100000.0 :         :     :           0 :  YES :              :        :    : 
+ -----------------------------------------------------------------------------------------------------------------------------------
+
+ @--MESSAGE  AT TIME        0.0   DAYS    ( 1-JAN-2000):
+ @           RESTART FILE WRITTEN   REPORT     0                             
+1                             **********************************************************************   2
+  SIMULATE AT     0.00   DAYS *  GPRS TEST EXAMPLE PHASE 2: 3D OIL-WATER SYSTEM                        * ECLIPSE  VERSION 2004a      
+  REPORT   0     1 JAN 2000   *WIN32 RUN                                                               * RUN AT 17:40 ON 06 MAR 2007 
+                              **************************************************************************
+
+ STEP    1 TIME=    2.40 HOURS ( +2.40 HOURS INIT  2 ITS) (1-JAN-2000)           
+  PAV=  4776.0  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP    2 TIME=    9.60 HOURS ( +7.20 HOURS MAXF  2 ITS) (1-JAN-2000)           
+  PAV=  4777.1  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP    3 TIME=    1.30  DAYS (+21.60 HOURS MAXF  2 ITS) (2-JAN-2000)           
+  PAV=  4780.2  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP    4 TIME=    4.00  DAYS (  +2.7  DAYS MAXF  3 ITS) (5-JAN-2000)           
+  PAV=  4789.8  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP    5 TIME=    6.67  DAYS (  +2.7  DAYS TRNC  2 ITS) (7-JAN-2000)           
+  PAV=  4799.6  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP    6 TIME=    9.69  DAYS (  +3.0  DAYS TRNC  2 ITS) (10-JAN-2000)          
+  PAV=  4811.3  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP    7 TIME=   13.96  DAYS (  +4.3  DAYS TRNC  2 ITS) (14-JAN-2000)          
+  PAV=  4828.2  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP    8 TIME=   19.95  DAYS (  +6.0  DAYS TRNC  3 ITS) (20-JAN-2000)          
+  PAV=  4852.6  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP    9 TIME=   27.15  DAYS (  +7.2  DAYS TRNC  2 ITS) (28-JAN-2000)          
+  PAV=  4882.5  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   10 TIME=   35.92  DAYS (  +8.8  DAYS TRNC  3 ITS) (5-FEB-2000)           
+  PAV=  4919.7  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   11 TIME=   45.98  DAYS ( +10.1  DAYS TRNC  3 ITS) (15-FEB-2000)          
+  PAV=  4963.2  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   12 TIME=   57.75  DAYS ( +11.8  DAYS TRNC  3 ITS) (27-FEB-2000)          
+  PAV=  5015.4  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   13 TIME=   71.39  DAYS ( +13.6  DAYS TRNC  3 ITS) (12-MAR-2000)          
+  PAV=  5077.3  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   14 TIME=   86.52  DAYS ( +15.1  DAYS TRNC  3 ITS) (27-MAR-2000)          
+  PAV=  5147.8  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   15 TIME=  104.40  DAYS ( +17.9  DAYS TRNC  4 ITS) (14-APR-2000)          
+  PAV=  5233.9  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   16 TIME=  123.66  DAYS ( +19.3  DAYS TRNC  3 ITS) (3-MAY-2000)           
+  PAV=  5329.9  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   17 TIME=  144.10  DAYS ( +20.4  DAYS TRNC  3 ITS) (24-MAY-2000)          
+  PAV=  5435.8  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   18 TIME=  167.56  DAYS ( +23.5  DAYS TRNC  4 ITS) (16-JUN-2000)          
+  PAV=  5562.5  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   19 TIME=  193.10  DAYS ( +25.5  DAYS TRNC  4 ITS) (12-JLY-2000)          
+  PAV=  5707.0  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   20 TIME=  220.53  DAYS ( +27.4  DAYS TRNC  3 ITS) (8-AUG-2000)           
+  PAV=  5870.5  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   21 TIME=  249.20  DAYS ( +28.7  DAYS TRNC  4 ITS) (6-SEP-2000)           
+  PAV=  6050.7  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   22 TIME=  278.25  DAYS ( +29.0  DAYS TRNC  3 ITS) (5-OCT-2000)           
+  PAV=  6244.1  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   23 TIME=  307.08  DAYS ( +28.8  DAYS TRNC  3 ITS) (3-NOV-2000)           
+  PAV=  6448.0  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   24 TIME=  337.39  DAYS ( +30.3  DAYS TRNC  3 ITS) (3-DEC-2000)           
+  PAV=  6676.9  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   25 TIME=  364.38  DAYS ( +27.0  DAYS TRNC  4 ITS) (30-DEC-2000)          
+  PAV=  6894.9  PSIA   WCT= 0.00 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   26 TIME=  391.87  DAYS ( +27.5  DAYS TRNC  4 ITS) (26-JAN-2001)          
+  PAV=  7122.3  PSIA   WCT=0.039 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   27 TIME=  415.27  DAYS ( +23.4  DAYS TRNC  3 ITS) (19-FEB-2001)          
+  PAV=  7312.8  PSIA   WCT=0.104 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   28 TIME=  438.85  DAYS ( +23.6  DAYS TRNC  3 ITS) (14-MAR-2001)          
+  PAV=  7499.9  PSIA   WCT=0.169 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   29 TIME=  468.12  DAYS ( +29.3  DAYS TRNC  4 ITS) (13-APR-2001)          
+  PAV=  7720.0  PSIA   WCT=0.252 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   30 TIME=  494.36  DAYS ( +26.2  DAYS TRNC  3 ITS) (9-MAY-2001)           
+  PAV=  7902.1  PSIA   WCT=0.341 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   31 TIME=  524.53  DAYS ( +30.2  DAYS TRNC  3 ITS) (8-JUN-2001)           
+  PAV=  8093.8  PSIA   WCT=0.422 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   32 TIME=  569.56  DAYS ( +45.0  DAYS TRNC  4 ITS) (23-JLY-2001)          
+  PAV=  8348.1  PSIA   WCT=0.511 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   33 TIME=  613.10  DAYS ( +43.5  DAYS TRNC  3 ITS) (5-SEP-2001)           
+  PAV=  8570.3  PSIA   WCT=0.581 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   34 TIME=  663.10  DAYS ( +50.0  DAYS MAXS  4 ITS) (25-OCT-2001)          
+  PAV=  8791.5  PSIA   WCT=0.653 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   35 TIME=  709.51  DAYS ( +46.4  DAYS TRNC  3 ITS) (10-DEC-2001)          
+  PAV=  8966.7  PSIA   WCT=0.715 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   36 TIME=  759.51  DAYS ( +50.0  DAYS MAXS  3 ITS) (29-JAN-2002)          
+  PAV=  9129.1  PSIA   WCT=0.762 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   37 TIME=  809.51  DAYS ( +50.0  DAYS MAXS  2 ITS) (20-MAR-2002)          
+  PAV=  9270.8  PSIA   WCT=0.799 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   38 TIME=  859.51  DAYS ( +50.0  DAYS MAXS  2 ITS) (9-MAY-2002)           
+  PAV=  9395.7  PSIA   WCT=0.827 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   39 TIME=  909.51  DAYS ( +50.0  DAYS MAXS  3 ITS) (28-JUN-2002)          
+  PAV=  9506.1  PSIA   WCT=0.850 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   40 TIME=  954.76  DAYS ( +45.2  DAYS HALF  2 ITS) (12-AUG-2002)          
+  PAV=  9595.2  PSIA   WCT=0.869 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+
+ STEP   41 TIME= 1000.00  DAYS ( +45.2  DAYS REPT  2 ITS) (27-SEP-2002)          
+  PAV=  9674.3  PSIA   WCT=0.885 GOR= 0.00000  MSCF/STB WGR= 0.00000  STB/MSCF   
+1                             **********************************************************************   3
+  WELLS    AT  1000.00   DAYS *  GPRS TEST EXAMPLE PHASE 2: 3D OIL-WATER SYSTEM                        * ECLIPSE  VERSION 2004a      
+  REPORT   1    27 SEP 2002   *WIN32 RUN                                                               * RUN AT 17:40 ON 06 MAR 2007 
+                              **************************************************************************
+
+
+                                                          PRODUCTION REPORT
+                                                          -----------------
+
+------------------------------------------------------------------------------------------------------------------------------------
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :WATER: GAS/OIL: WAT/GAS: BHP OR : THP OR : STEADY-ST PI :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. : CUT :  RATIO :  RATIO : CON.PR.: BLK.PR.: OR POTN OF   :
+: OR GRID:           :    :   STB/DAY :   STB/DAY :  MSCF/DAY :   RB/DAY  :     :MSCF/STB:STB/MSCF:  PSIA  :  PSIA  : PREFERRED PH :
+====================================================================================================================================
+:        :           :    :           :           :           :           :     :        :        :        :        :              :
+:FIELD               :    :      688.9:     5311.1:        0.0:     5966.8:0.885:    0.00:  0.0000:        :        :              :
+====================================================================================================================================
+:        :           :    :           :           :           :           :     :        :        :        :        :              :
+:DUMMY     GROUP     :    :      688.9:     5311.1:        0.0:     5966.8:0.885:    0.00:  0.0000:        :        :              :
+------------------------------------------------------------------------------------------------------------------------------------
+:        :           :    :           :           :           :           :     :        :        :        :        :              :
+:PROD1   : 10, 10    :LRAT:      688.9:     5311.1:        0.0:     5966.8:0.885:    0.00:  0.0000:  7604.2:     0.0:     0.9  O PI:
+:  BLOCK : 10, 10,  1:    :      681.2:      537.4:        0.0:     1129.6:0.441:    0.00:  0.0000:  7604.2:  8395.1:     0.9  O PI:
+:  BLOCK : 10, 10,  2:    :        7.6:     2337.0:        0.0:     2371.4:0.997:    0.00:  0.0000:  7606.4:  8397.3:     0.0  O PI:
+:  BLOCK : 10, 10,  3:    :        0.2:     2436.6:        0.0:     2465.8:1.000:    0.00:  0.0000:  7608.6:  8399.5:     0.0  O PI:
+====================================================================================================================================
+
+
+                                                          INJECTION  REPORT
+                                                          -----------------
+
+       -------------------------------------------------------------------------------------------------------------------------
+       :  WELL  :  LOCATION :CTRL:CTRL:CTRL:    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :   STEADY-STATE  :
+       :  NAME  :  (I,J,K)  :MODE:MODE:MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:       I.I.      :
+       : OR GRID:           :OIL :WAT :GAS :   STB/DAY :   STB/DAY :  MSCF/DAY :   RB/DAY  :  PSIA  :  PSIA  :   OR POTENTIAL  :
+       =========================================================================================================================
+       :        :           :    :    :    :           :           :           :           :        :        :                 :
+       :FIELD               :    :    :    :        0.0:     6000.0:        0.0:     6071.5:        :        :                 :     
+       =========================================================================================================================
+       :        :           :    :    :    :           :           :           :           :        :        :                 :
+       :DUMMY     GROUP     :    :    :    :        0.0:     6000.0:        0.0:     6071.5:        :        :                 :     
+       -------------------------------------------------------------------------------------------------------------------------
+       :        :           :    :    :    :           :           :           :           :        :        :                 :
+       :INJ1    :  1,  1    :    :WRAT:    :        0.0:     6000.0:        0.0:     6071.5: 11356.9:     0.0:    10.5 SB/D/PSI:     
+       :  BLOCK :  1,  1,  1:    :    :    :        0.0:     1975.0:        0.0:     1998.5: 11356.9: 10783.8:     3.4 SB/D/PSI:     
+       :  BLOCK :  1,  1,  2:    :    :    :        0.0:     2007.1:        0.0:     2031.0: 11359.2: 10786.0:     3.5 SB/D/PSI:     
+       :  BLOCK :  1,  1,  3:    :    :    :        0.0:     2017.9:        0.0:     2042.0: 11361.4: 10788.2:     3.5 SB/D/PSI:     
+       =========================================================================================================================
+
+
+                                                CUMULATIVE PRODUCTION/INJECTION TOTALS
+                                                --------------------------------------
+
+    --------------------------------------------------------------------------------------------------------------------------------
+    :  WELL  :  LOCATION :WELL:WELL:    OIL    :   WATER   :    GAS    :  RES.VOL. :    OIL    :   WATER   :    GAS    :  RES.VOL. :
+    :  NAME  :  (I,J,K)  :TYPE:CTRL: PRODUCTION: PRODUCTION: PRODUCTION: PRODUCTION: INJECTION : INJECTION : INJECTION : INJECTION :
+    : OR GRID:           :    :MODE:    MSTB   :    MSTB   :    MMSCF  :    MRBL   :    MSTB   :    MSTB   :    MMSCF  :    MRBL   :
+    ================================================================================================================================
+    :        :           :    :    :           :           :           :           :           :           :           :           :
+    :FIELD               :    :    :     3648.3:     2351.7:        0.0:     5701.8:        0.0:     6000.0:        0.0:     6109.7: 
+    ================================================================================================================================
+    :        :           :    :    :           :           :           :           :           :           :           :           :
+    :DUMMY     GROUP     :    :    :     3648.3:     2351.7:        0.0:     5701.8:        0.0:     6000.0:        0.0:     6109.7: 
+    --------------------------------------------------------------------------------------------------------------------------------
+    :        :           :    :    :           :           :           :           :           :           :           :           :
+    :PROD1   : 10, 10    :PROD:LRAT:     3648.3:     2351.7:        0.0:     5701.8:        0.0:        0.0:        0.0:        0.0: 
+    :  BLOCK : 10, 10,  1:    :    :     1778.1:      118.6:        0.0:     1718.8:        0.0:        0.0:        0.0:        0.0: 
+    :  BLOCK : 10, 10,  2:    :    :     1070.3:      893.4:        0.0:     1885.4:        0.0:        0.0:        0.0:        0.0: 
+    :  BLOCK : 10, 10,  3:    :    :      799.9:     1339.7:        0.0:     2097.5:        0.0:        0.0:        0.0:        0.0: 
+    :        :           :    :    :           :           :           :           :           :           :           :           :
+    :INJ1    :  1,  1    :WINJ:WRAT:        0.0:        0.0:        0.0:        0.0:        0.0:     6000.0:        0.0:     6109.7: 
+    :  BLOCK :  1,  1,  1:    :    :        0.0:        0.0:        0.0:        0.0:        0.0:     1960.2:        0.0:     1995.9: 
+    :  BLOCK :  1,  1,  2:    :    :        0.0:        0.0:        0.0:        0.0:        0.0:     2009.9:        0.0:     2046.7: 
+    :  BLOCK :  1,  1,  3:    :    :        0.0:        0.0:        0.0:        0.0:        0.0:     2029.9:        0.0:     2067.1: 
+    ================================================================================================================================
+
+ @--MESSAGE  AT TIME     1000.0   DAYS    (27-SEP-2002):
+ @           RESTART FILE WRITTEN   REPORT     1                             
+    44 READING END     
+
+ Error summary 
+ Comments               1
+ Warnings               0
+ Problems               0
+ Errors                 0
+ Bugs                   0

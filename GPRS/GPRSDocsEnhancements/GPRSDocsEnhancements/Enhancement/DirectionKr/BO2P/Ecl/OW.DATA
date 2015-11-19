@@ -1,0 +1,249 @@
+
+RUNSPEC   == specifications of simulation =============================
+TITLE     -- title of the run
+  GPRS TEST EXAMPLE PHASE 2: 3D OIL-WATER SYSTEM
+
+DIMENS    -- dimensions of the model
+-- NX    NY   NZ
+   11   11    5 /
+
+-- specify the phases present
+OIL       -- we run basically two phase black oil here
+WATER
+
+FIELD     -- unit specification
+
+START     -- starting date for simulation run
+  1 'JAN' 2007  /
+
+-- some other sizes and dimensions necessary for memory allocation:
+EQLDIMS   -- equilibration table size 
+    1  1000   10    1   20 /
+    
+TABDIMS   -- size of saturation and pvt tables
+    1823    1   100   40 /
+WELLDIMS  -- max numb of WELLS/CONN per WELL/GROUPS/WELLperGROUP
+    3    20    1    3 /			
+NSTACK
+   24 /
+
+SATOPTS
+DIRECT /
+
+GRID      == geometry of our model =====================================
+EQUALS    -- set top depth, block sizes and rock properties
+          -- valid for a given range of blocks: I1 I2   J1 J2   K1 K2   
+      'DX'    50   /                        -- default box => all blocks
+      'DY'    50   / 
+      'PORO'   0.25 / 
+      'DZ'      25  / -- thickness of the layers
+      'TOPS'  8000      1   11  1   11   1   1 /  -- first layer      
+      / 
+
+INCLUDE
+'kxc_ecl.dat' /
+
+INCLUDE
+'kyc_ecl.dat' /
+
+INCLUDE
+'kzc_ecl.dat' /
+
+/
+
+-- request init and grid file, necessary for post processing of the simulation
+-- with floviz
+INIT
+GRIDFILE
+ 2 /
+
+-- OUTPUT OF DX, DY, DZ, PERMX, PERMY, PERMZ, MULTZ, PORO AND TOPS DATA
+-- IS REQUESTED, AND OF THE CALCULATED PORE VOLUMES AND X, Y AND Z
+-- TRANSMISSIBILITIES
+RPTGRID
+  1  1  1  1  1  1  0  0  1  1  0  1  1  0  1  1  1 /
+
+PROPS     == pvt and relperm tables =============================
+
+NOWARN
+
+-- allow nonmonotonic krs
+DEBUG
+15*0	-1 /
+
+PVCDO 
+-- Pressure   	Bo	viscosity 
+	14.7	1.0	0	116.3	0	
+/                            
+
+PVTW   
+     14.7    1.0   0    0.5	0
+/
+
+     
+INCLUDE
+'krow_nw2p_inj_ef_out.dat' /				
+
+
+ROCK       -- reference Pressure and rock compressibility
+        14.7    3E-6  
+/
+
+DENSITY   -- oil wat gas @surface(lbm/scf)
+        46.244	 62.238
+/
+
+-- OUTPUT CONTROLS FOR PROPS DATA
+-- ACTIVATED FOR SOF3, SWFN, SGFN, PVTW, PVDG, DENSITY AND ROCK KEYWORDS
+RPTPROPS
+1  1  1  0  1  1  1  1  /
+
+REGIONS
+INCLUDE
+'krnumx_nw2p_inj.dat' /						
+
+INCLUDE
+'krnumy_nw2p_inj.dat' /						
+
+INCLUDE
+'krnumz_nw2p_inj.dat' /	
+
+------!!! notice the oil-water contact face, and 
+SOLUTION   == initial state of solution variables =====================
+EQUIL      -- DATA FOR INITIALISING FLUIDS TO POTENTIAL EQUILIBRIUM
+--    DATUM  DATUM   OWC    OWC    GOC    GOC    RSVD   RVVD   SOLN
+--    DEPTH  PRESS  DEPTH   PCOW  DEPTH   PCOG  TABLE  TABLE   METH
+       8400  4800   10000    0     5100    0      0      0       0
+/
+
+-- OUTPUT CONTROLS (SWITCH ON OUTPUT OF INITIAL GRID BLOCK PRESSURES)
+RPTSOL
+PRESSURE SOIL SWAT /
+
+
+SUMMARY    == output written to summary *.RSM file ====================
+RUNSUM     -- additional table in *.PRT file
+SEPARATE   -- write a seperate *.RSM file
+
+WOPR       -- 'W'ell 'O'il 'P'roduction 'R'ate
+ 'PROD1'
+ 'PROD2'
+/
+
+WWPR       -- this is the Well GOR (GOR of well 'PROD')
+ 'PROD1'
+ 'PROD2'
+ /
+
+WWIR   
+ 'INJ1'
+ /
+
+WBHP       -- and the bottom hole pressure of 'PROD'
+ 'PROD1'
+ 'PROD2'
+ 'INJ1'
+/
+
+BPR        -- request pressure output for specified blocks for each time step
+1 1 1 / --  oil producer, top perforation
+11 11 5 /
+/
+
+BOSAT      -- request oil saturation output for specified blocks 
+1 1 1 / --              oil producer, top perforation
+11 11 5 /
+/
+
+
+SCHEDULE   == operations to be simulated ==============================
+-- CONTROLS ON OUTPUT AT EACH REPORT TIME
+RPTSCHED                                         FIELD   10:29 13 JUN 85
+   1   1   1   1   1   0   0   0   1   0   0   2   0   1   2   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   /
+
+--DRSDT     -- Free gas is not allowed to re-dissolve within oil
+--  0 /
+
+RPTRST    -- request restart file
+'BASIC=2'
+/
+
+-- RPTRST
+-- 3 0 1 0 0 2 /
+
+TUNING  -- min/max timestep (3 sections)
+--1 180 1 /
+0.1	10	/
+5*	0.1	/
+2* 100 		/
+
+
+-------Well No.1-------
+--set BHP reference depth to -1, then Eclispe will set it as default, which is better.
+WELSPECS   == WELL SPECIFICATION DATA ================================
+--   WELL   GROUP LOCATION  BHP   PI
+--   NAME   NAME    I  J   DEPTH DEFN
+--  'PROD1' 'DUMMY'  20 20  8425 'OIL'   2* 'STOP' 	/ 
+    'PROD1' 'DUMMY'  4 2  -1 'OIL'   			/ 
+    'PROD2' 'DUMMY'  4 10  -1 'OIL'   			/ 
+/
+
+COMPDAT    -- COMPLETION SPECIFICATION DATA
+--   WELL  LOCATION          OPEN/ SAT CONN  WELL  KH  S  D  AXIS
+--   NAME    I    J  K1  K2   SHUT  TAB FACT  DIAM
+     PROD1    4  2  2   2   OPEN  0   0.922825		0.5	3*	x/ 
+     PROD1    5  2  2   2   OPEN  0   4.11069	        0.5	3*	x/ 
+     PROD1    6  2  2   2   OPEN  0   7.09261		0.5  3*	x/ 
+     PROD1    7  2  2   2   OPEN  0   4.8639		 0.5	3*	x/ 
+     PROD1    8  2  2   2   OPEN  0   1.31489		 0.5	3*	x/ 
+     PROD2    4  10  2   2   OPEN  0   1.34514		0.5	3*	x/ 
+     PROD2    5  10  2   2   OPEN  0   0.678866		0.5	3*	x/ 
+     PROD2    6  10  2   2   OPEN  0   0.175712		0.5	3*	x/ 
+     PROD2    7  10  2   2   OPEN  0   1.25643		0.5	3*	x/ 
+     PROD2    8  10  2   2   OPEN  0   3.65378		0.5	3*	x/ 
+/
+
+-------Well No.2-------
+WELSPECS   == WELL SPECIFICATION DATA ================================
+--   WELL   GROUP  LOCATION  BHP   PI
+--   NAME   NAME    I  J    DEPTH DEFN
+--  'INJ1' 'DUMMY'  1  1    8425 'WATER'   2* 'STOP' 	/ -- see ECL Manual for details
+    'INJ1' 'DUMMY'  3  6    -1   'WATER'   	 	/ -- see ECL Manual for details
+/
+
+COMPDAT    -- COMPLETION SPECIFICATION DATA
+--   WELL  LOCATION          OPEN/ SAT CONN  WELL  KH  S  D  AXIS
+--   NAME    I    J  K1  K2   SHUT  TAB FACT  DIAM
+     INJ1     3    6  4   4   OPEN  0   0.0338877	   0.5	3*	x/
+     INJ1     4    6  4   4   OPEN  0   0.00614839	   0.5	3*	x/
+     INJ1     5    6  4   4   OPEN  0   0.0275784	   0.5	3*	x/
+     INJ1     6    6  4   4   OPEN  0   0.0518524	   0.5	3*	x/
+     INJ1     7    6  4   4   OPEN  0   8.41744e-005	   0.5	3*	x/
+     INJ1     8    6  4   4   OPEN  0   0.455672	   0.5	3*	x/
+     INJ1     9    6  4   4   OPEN  0   14.2525  	   0.5	3*	x/
+/
+
+-----------------------------------------------------------------
+WCONPROD   -- PRODUCTION WELL CONTROLS
+--   WELL    OPEN/  CTRL     OIL  WATER   GAS  LIQU   RES   BHP
+--   NAME    SHUT   MODE    RATE  RATE    RATE  RATE  RATE
+--    'PROD1'  'SHUT' 'ORAT'   6000   4*                    1000  / 
+     'PROD1'  'OPEN' 'BHP'    5*                      	    3000    / --BHP control
+     'PROD2'  'OPEN' 'BHP'    5*                      	    3000    / --BHP control
+/
+
+WCONINJE   -- INJECTION WELL CONTROLS
+--   WELL    Inject  Well     CTRL   SurRate  ResRate  BHP       THP      .......
+--   NAME    Type    Status   MODE   Target   Target   Target    Target   .......
+--   'INJ1'  'WATER' 'OPEN'   'RATE' 6000     1*       100000    / --water rate control
+     'INJ1'  'WATER' 'OPEN'   'BHP'  2*                7000      / --BHP control
+/
+
+-- timesteps can be refined by entering multiple TSTEP keywords       
+TSTEP 
+5*100
+/
+
+END        
